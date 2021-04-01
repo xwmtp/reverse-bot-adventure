@@ -51,11 +51,8 @@ class Leaderboard:
 
     def lookup_user_id(self, name):
         for player in self.players:
-            try:
-                if player['rel'] == 'user' and player['names']['international'].lower() == name.lower():
-                    return player['id']
-            except KeyError:
-                print(player)
+            if player['rel'] == 'user' and player['names']['international'].lower() == name.lower():
+                return player['id']
 
 
 @dataclass

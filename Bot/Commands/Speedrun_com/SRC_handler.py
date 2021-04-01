@@ -21,21 +21,20 @@ class SRC_handler(Message_handler):
         split_msg = msg.split(' ')
         command = split_msg[0]
         args_string = ' '.join(split_msg[1:])
-        text = None
+        response = None
 
         # pb of specific user
-        print(command)
         if command in self.commands['wr']:
-            text = self.wr(args_string)
+            response = self.wr(args_string)
         if command in self.commands['leaderboard']:
-            text = self.src_link(args_string)
+            response = self.src_link(args_string)
         #if command in self.commands['user_lookup']:
-        #    text = self.user_pb(args_string)
+        #    response = self.user_pb(args_string)
         if command in self.commands['pb']:
-            text = self.pb(args_string, channel)
+            response = self.pb(args_string, channel)
 
-        if text:
-            return text
+        if response:
+            return response
         else:
             return 'Category not found.'
 
@@ -60,7 +59,6 @@ class SRC_handler(Message_handler):
         if not match:
             return
         category, var = match
-        print(match)
         leaderboard = download_leaderboard(category, var, top=1)
         wr_run = leaderboard.get_run(rank=1)
 
@@ -71,6 +69,8 @@ class SRC_handler(Message_handler):
             return f"No world record found for OoT {category_name}."
 
     def src_link(self, args_str):
+        if args_str == '':
+            return "https://www.speedrun.com"
         match = self.categories_matcher.match(args_str)
         if match:
             category, _ = match

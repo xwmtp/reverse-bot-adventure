@@ -1,6 +1,7 @@
 # Project
 Settings/
 logs/
+channels.txt
 
 # Pycharm
 .idea/

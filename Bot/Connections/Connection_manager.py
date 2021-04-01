@@ -1,7 +1,7 @@
 from Bot.Connections.Message import convert_irc_message
 from Bot.Connections.IRC_connection import IRC_connection
 from Bot.Responder import Responder
-from Bot.Config import Configs
+from Bot.Config import Configs, Definitions
 import socket
 import logging
 import time
@@ -11,12 +11,10 @@ from collections import deque
 
 def setup_and_run_irc():
     responder = Responder()
-    connection = IRC_connection(['xwillmarktheplace', 'scaramangado'], Configs.get('Bot'), Configs.get('bot_oauth'))
-    connection.setup_connection()
-
-    if connection.is_connected():
-        connection_manager = Connection_manager(connection, responder)
-        connection_manager.run()
+    connection = IRC_connection(Configs.get('Bot'), Configs.get('bot_oauth'))
+    connection_manager = Connection_manager(connection, responder)
+    connection_manager.setup()
+    connection_manager.run()
 
 
 class Connection_manager:
@@ -27,14 +25,42 @@ class Connection_manager:
         self.data_reader = Data_reader(connection)
         self.reconnecter = Reconnecter(connection)
 
+    def setup(self):
+        self.connection.connect_to_irc()
+        self.process_welcome_messages()
+        with open(Definitions.CHANNELS_FILE, 'r') as file:
+            channels_to_join = file.read().splitlines()
+        if self.connection.is_connected():
+            self.join_channels([Configs.get('Bot')])
+            self.join_channels(channels_to_join)
+        else:
+            logging.critical("Connection is not connected, won't join channels.")
+
+
+    def process_welcome_messages(self):
+        while (True):
+            message = self.get_next_message()
+            if message:
+                response = self.responder.get_response(message)
+                if response:
+                    self.send_message(response, message.channel)
+
+            if self.data_reader.queue_empty():
+                return
+
+
     def run(self):
         while (True):
             message = self.get_next_message()
             if not message:
                 continue
-            response = self.responder.get_response(message)
-            if response:
-                self.send_message(response, message.channel)
+            if message.in_bot_channel():
+                response = self.responder.handle_bot_channel_message(message)
+                self.process_bot_channel_response(message, response)
+            else:
+                response = self.responder.get_response(message)
+                if response:
+                    self.send_message(response, message.channel)
 
     def get_next_message(self):
         try:
@@ -69,7 +95,28 @@ class Connection_manager:
             logging.error(traceback.format_exc())
 
     def send_message(self, content, channel):
+        if not channel.startswith('#'):
+            channel = '#' + channel
         self.connection.send_message(content, channel)
+
+    def join_channels(self, channel_names):
+        channel_names = [c for c in channel_names if len(c) > 1]
+        for channel in channel_names:
+            self.connection.join_channel(channel)
+            self.process_welcome_messages()
+        for channel in channel_names:
+            self.send_message("Ready to put Bottle on B! Use !help to see commands.", channel)
+
+    def process_bot_channel_response(self, message, response):
+        if response is None:
+            return
+        if 'actions' in response:
+            if 'add' in response['actions']:
+                self.join_channels([message.sender])
+            if 'remove' in response['actions']:
+                self.connection.part_channel(message.sender)
+        if 'response' in response:
+            self.send_message(f"@{message.sender} {response['response']}", message.channel)
 
 
 class Data_reader:
@@ -98,6 +145,10 @@ class Data_reader:
             for line in data_lines[:-1]:
                 self.lines.append(line)
             self.buffer = data_lines[-1]
+        logging.debug(f"Received {len(self.lines)} lines")
+
+    def queue_empty(self):
+        return len(self.lines) == 0
 
 
 class Reconnecter:

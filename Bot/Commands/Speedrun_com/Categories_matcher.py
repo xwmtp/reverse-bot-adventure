@@ -219,7 +219,6 @@ class Categories_matcher:
         for category_names in self.categories_names:
             match = category_names.match(string)
             if match:
-                print(match)
                 return self.match_found_category_with_src_info(match)
 
     def match_found_category_with_src_info(self, match):

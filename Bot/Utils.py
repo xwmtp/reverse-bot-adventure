@@ -24,7 +24,6 @@ def readjson(url, text_only=False, tries=5):
             return
 
     error_message = "Error in accessing api:", status, "(after", tries, "tries)"
-    print(error_message)
     logging.critical(error_message)
 
 def copy_file(path, old_file_name, new_file_name):

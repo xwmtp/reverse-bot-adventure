@@ -7,31 +7,25 @@ from Bot.Config import Configs
 
 class IRC_connection:
 
-    def __init__(self, channel_names, bot_name, bot_oauth):
+    def __init__(self, bot_name, bot_oauth):
         self.HOST = "irc.twitch.tv"
         self.PORT = 6667
         self.TIMEOUT = 60
-        self.channels = channel_names
         self.NICK = bot_name
         self.PASS = bot_oauth
         self.socket = socket.socket()
 
-    def setup_connection(self):
+    def connect_to_irc(self):
         try:
             self.socket.settimeout(self.TIMEOUT)
             self.socket.connect((self.HOST, self.PORT))
 
-            logging.info(f"Connecting to Bot account {self.NICK}.")
+            logging.info(f"Connecting to Bot account '{self.NICK}'...")
             self.socket.send(bytes(f'PASS {self.PASS}\r\n', 'UTF-8'))
             self.socket.send(bytes(f'NICK {self.PASS}\r\n', 'UTF-8'))
-
-
-            for channel in self.channels:
-                self.join_channel(channel)
-
             self.socket.send(bytes('CAP REQ :twitch.tv/tags\r\n', 'UTF-8'))
 
-            logging.info('Finished setting up connection.')
+            logging.info('Connected Bot to twitch IRC.')
 
         except Exception as e:
             logging.critical(
@@ -39,18 +33,27 @@ class IRC_connection:
 
     def join_channel(self, channel_name):
         try:
-            logging.info(f"Joining channel #{channel_name}.")
-            self.socket.send(bytes(f'JOIN #{channel_name}\r\n', 'UTF-8'))
             time.sleep(1)
+            self.socket.send(bytes(f'JOIN #{channel_name}\r\n', 'UTF-8'))
+            logging.info(f"Joined channel #{channel_name}")
 
         except Exception as e:
             logging.critical(
                 f"Failed to join channel #{channel_name} Error: {repr(e)}")
 
+    def part_channel(self, channel_name):
+        try:
+            self.socket.send(bytes(f'PART #{channel_name}\r\n', 'UTF-8'))
+            logging.info(f"Parted channel #{channel_name}")
+
+        except Exception as e:
+            logging.critical(
+                f"Failed to part channel #{channel_name} Error: {repr(e)}")
+
     def reset_connection(self):
         self.socket.close()
         self.socket = socket.socket()
-        self.socket = self.setup_connection()
+        self.socket = self.setup_connection() #todo
 
     def is_connected(self):
         return self.socket is not None
@@ -72,9 +75,6 @@ class IRC_connection:
         else:
             self.socket.send(bytes(f'PRIVMSG {channel} :{msg}\r\n', 'UTF-8'))
         logging.info(f"Sent message in {channel}: {msg}")
-
-    def part_channel(self, channel):
-        self.socket.send(bytes(f'PART #{channel}\r\n', 'UTF-8'))
 
     def receive_data(self, characters=2048):
         return self.socket.recv(characters).decode('UTF-8')
@@ -101,7 +101,6 @@ class IRC_message:
         self.KNOWN_COMMANDS = ['PRIVMSG', 'JOIN', 'PING', 'PONG', 'CAP']
         logging.debug(
             f'Parsed tag {self.tag}, client {self.client_identifier}, command {self.command}, rec {self.recipient}, content {self.content}')
-        self.sender()
 
     def sender(self):
         if self.command == 'PRIVMSG':

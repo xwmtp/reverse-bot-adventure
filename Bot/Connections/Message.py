@@ -1,4 +1,7 @@
 import re
+from dataclasses import dataclass
+from Bot.Config import Configs
+
 
 def convert_irc_message(irc_message):
     permission = 'viewer'
@@ -11,9 +14,15 @@ def convert_irc_message(irc_message):
                     permission = possible_permission
     return Message(irc_message.content, irc_message.recipient, irc_message.sender(), permission)
 
+@dataclass
 class Message:
-    def __init__(self, content, channel, sender, permission):
-        self.content = content
-        self.channel = channel
-        self.sender = sender
-        self.permission = permission
+    content: str
+    channel: str
+    sender: str
+    permission: str
+
+    def in_bot_channel(self):
+        return self.channel.lower()[1:] == Configs.get("Bot")
+
+
+

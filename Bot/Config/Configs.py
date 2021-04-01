@@ -70,6 +70,7 @@ configs = [
 def create_settings():
     for config in configs:
         config.copy_from_template()
+    open(Definitions.ROOT_DIR / 'Bot/Commands/Bot_settings/Settings_files/channels.txt', 'a').close()
 
 def import_settings():
     for config in configs:
