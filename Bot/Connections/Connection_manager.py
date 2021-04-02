@@ -28,14 +28,7 @@ class Connection_manager:
     def setup(self):
         self.connection.connect_to_irc()
         self.process_welcome_messages()
-        with open(Definitions.CHANNELS_FILE, 'r') as file:
-            channels_to_join = file.read().splitlines()
-        if self.connection.is_connected():
-            self.join_channels([Configs.get('Bot')])
-            self.join_channels(channels_to_join)
-        else:
-            logging.critical("Connection is not connected, won't join channels.")
-
+        self.join_all_saved_channels()
 
     def process_welcome_messages(self):
         while (True):
@@ -84,11 +77,11 @@ class Connection_manager:
         except socket.error as e:
             logging.critical(f"Socket error: {repr(e)}")
             print("reconnecting because socket error")
-            self.reconnecter.reconnect()
+            self.reconnect()
 
         except ConnectionResetError as e:
             logging.critical(f"ConnectionResetError: {repr(e)}")
-            self.reconnecter.reconnect()
+            self.reconnect()
 
         except Exception as e:
             logging.critical(f"Unknown exception while receiving data: {repr(e)}")
@@ -106,6 +99,21 @@ class Connection_manager:
             self.process_welcome_messages()
         for channel in channel_names:
             self.send_message("Ready to put Bottle on B! Use !help to see commands.", channel)
+
+    def join_all_saved_channels(self):
+        with open(Definitions.CHANNELS_FILE, 'r') as file:
+            channels_to_join = file.read().splitlines()
+        if self.connection.is_connected():
+            self.join_channels([Configs.get('Bot')])
+            self.join_channels(channels_to_join)
+        else:
+            logging.critical("Connection is not connected, won't join channels.")
+
+    def reconnect(self):
+        self.reconnecter.reconnect()
+        self.process_welcome_messages()
+        self.join_all_saved_channels()
+
 
     def process_bot_channel_response(self, message, response):
         if response is None:
@@ -176,11 +184,17 @@ class Reconnecter:
 
             logging.critical(f"Attempting to reconnect (attempt {self.reconnect_attempts})...")
             self.connection.reset_connection()
+
             if self.connection.is_connected():
-                self.validate_reconnect = True
-                self.connection.send_ping(msg='validating_reconnect')
-                logging.critical("Reconnected, awaiting validation PONG.")
-                return True
+                try:
+                    self.validate_reconnect = True
+                    self.connection.send_ping(msg='validating_reconnect')
+                    logging.info("Reconnected, awaiting validation PONG.")
+                    return True
+                except Exception as e:
+                    logging.error(f"Error occured while reconnecting: {repr(e)}")
+            else:
+                logging.critical("Reconnection failed, socket is None.")
 
     def handle_pong(self):
         logging.info("Received PONG.")

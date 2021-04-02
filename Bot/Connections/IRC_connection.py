@@ -10,7 +10,7 @@ class IRC_connection:
     def __init__(self, bot_name, bot_oauth):
         self.HOST = "irc.twitch.tv"
         self.PORT = 6667
-        self.TIMEOUT = 60
+        self.TIMEOUT = 20
         self.NICK = bot_name
         self.PASS = bot_oauth
         self.socket = socket.socket()
@@ -26,10 +26,11 @@ class IRC_connection:
             self.socket.send(bytes('CAP REQ :twitch.tv/tags\r\n', 'UTF-8'))
 
             logging.info('Connected Bot to twitch IRC.')
+            logging.debug(f"Current socket: {self.socket}")
 
         except Exception as e:
-            logging.critical(
-                f"Failed connecting to Bot {self.NICK} Error: {repr(e)}")
+            self.socket = None
+            logging.critical(f"Failed connecting to Bot {self.NICK} Error: {repr(e)}")
 
     def join_channel(self, channel_name):
         try:
@@ -51,9 +52,10 @@ class IRC_connection:
                 f"Failed to part channel #{channel_name} Error: {repr(e)}")
 
     def reset_connection(self):
-        self.socket.close()
+        if self.socket:
+            self.socket.close()
         self.socket = socket.socket()
-        self.socket = self.setup_connection() #todo
+        self.connect_to_irc()
 
     def is_connected(self):
         return self.socket is not None
