@@ -1,4 +1,5 @@
 from Bot.Commands.Abstract_message_handler import Message_handler
+from Bot.Commands.Bot_settings.Manage_channels import get_channel_settings
 from Bot.Commands.Speedrun_com.Categories_matcher import Categories_matcher
 from Bot.Commands.Speedrun_com.Leaderboard import download_leaderboard
 from Bot.Config import Configs
@@ -44,14 +45,14 @@ class SRC_handler(Message_handler):
             return
         category, var = match
         leaderboard = download_leaderboard(category, var)
-        streamer = channel[1:]
-        pb_run = leaderboard.get_pb(streamer)
+        streamer_src = self.lookup_src_name(channel)
+        pb_run = leaderboard.get_pb(streamer_src)
 
         category_name = f"{category.name} - {var.name}" if var else category.name
         if pb_run:
             return f"{pb_run.player}'s PB for OoT {category_name} is {pb_run.time} ({make_ordinal(pb_run.rank)} place)."
         else:
-            return f"No PB found for OoT {category_name} from {streamer}."
+            return f"No PB found for OoT {category_name} from {streamer_src}."
 
     def wr(self, args_str):
         logging.debug(f"looking up wr for {args_str}")
@@ -75,6 +76,14 @@ class SRC_handler(Message_handler):
         if match:
             category, _ = match
             return category.weblink
+
+    def lookup_src_name(self, channel):
+        channel_settings = get_channel_settings(channel[1:].lower())
+        streamer_src = channel_settings.src_name
+        if streamer_src == '':
+            return channel[1:]
+        else:
+            return streamer_src
 
 
 

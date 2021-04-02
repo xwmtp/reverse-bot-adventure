@@ -1,6 +1,5 @@
 from Bot.Commands.Abstract_message_handler import Message_handler
-from Bot.Commands.Bot_settings.Manage_channels import read_channels_settings, overwrite_channels_settings, \
-    add_new_channel_setting
+from Bot.Commands.Bot_settings.Manage_channels import *
 from Bot.Config import Configs, Definitions
 import logging
 
@@ -12,6 +11,8 @@ class Bot_settings_handler(Message_handler):
         self.commands = {
             'add': ['!add', '!join'],
             'remove': ['!remove', '!delete', '!remove', '!part'],
+            'setsrc' : ['!setsrc', "!set_src"],
+            'setracetime' : ['!setracetime', '!setrtgg', '!set_racetime', "!set_rtgg", '!setracetimegg', '!set_racetimegg'],
             'help' : ['!help', '!commands', '!commands'],
             'channels' : ['!channels', '!count']
         }
@@ -30,6 +31,10 @@ class Bot_settings_handler(Message_handler):
             return self.help()
         if command in self.commands['channels']:
             return self.channels_count(sender)
+        if command in self.commands['setsrc']:
+            return self.set_src(sender, args)
+        if command in self.commands['setracetime']:
+            return self.set_racetime(sender, args)
 
     def add(self, sender):
         logging.info("Received !add command")
@@ -80,4 +85,27 @@ class Bot_settings_handler(Message_handler):
             channels = file.read().splitlines()
         channels = [c for c in channels if len(c) > 1]
         return {"response": f"{len(channels)} connected: {', '.join(channels[:50])}"}
+
+    def set_src(self, sender, args):
+        if len(args) == 0:
+            return {"response" : f"Provide your Speedrun.com user name with the command, e.g. !setsrc username"}
+        src_name = ' '.join(args)
+        success = update_channel_settings(sender, src_name=src_name)
+        if success:
+            return {"response": f"Your Speedrun.com user name has been set to '{format_name(src_name)}'"}
+        else:
+            logging.error(f"Could not save src name {src_name} for {sender}")
+            return {"response": f"Could not successfully save '{format_name(src_name)}' as your Speedrun.come user name"}
+
+    def set_racetime(self, sender, args):
+        if len(args) == 0:
+            return {"response" : f"Provide your Racetime.gg user name with the command, e.g. !setracetime username"}
+        racetime_name = ' '.join(args)
+        success = update_channel_settings(sender, racetime_name=racetime_name)
+        if success:
+            return {"response": f"Your Racetime.gg user name has been set to '{format_name(racetime_name)}'"}
+        else:
+            logging.error(f"Could not save racetime name {racetime_name} for {sender}")
+            return {"response": f"Could not successfully save '{format_name(racetime_name)}' as your Racetime.gg user name"}
+
 

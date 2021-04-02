@@ -1,7 +1,6 @@
-from xwillmarktheBot.Commands.Abstract_Message_Handler import Message_handler
-from xwillmarktheBot.Commands.Speedrun_stats.SpeedRunsLive.Race import LiveSRLRace, LiveRacetimeRace
-from xwillmarktheBot.Config import Configs
-from xwillmarktheBot.Utils import *
+from Bot.Commands.Abstract_message_handler import Message_handler
+from Bot.Config import Configs
+from Bot.Utils import *
 import isodate
 import datetime
 import pytz
@@ -36,15 +35,6 @@ class Race_handler(Message_handler):
             return self.get_live_race_info(command)
 
     def update_live_race(self, player):
-        # search SRL
-        json = readjson('http://api.speedrunslive.com/races')
-        for race in json['races']:
-            if player.lower() in [e.lower() for e in race['entrants'].keys()]:
-                self.live_race = LiveSRLRace(race)
-                # if the race isn't finished, stop looking
-                if self.live_race.state != 'Complete':
-                    return
-
         # search Racetime.gg
         for game in Configs.get('racetime games'):
             json = readjson(f'https://racetime.gg/{game}/data')
