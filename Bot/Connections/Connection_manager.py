@@ -1,3 +1,4 @@
+from Bot.Commands.Bot_settings.Manage_channels import get_channel_names
 from Bot.Connections.Message import convert_irc_message
 from Bot.Connections.IRC_connection import IRC_connection
 from Bot.Responder import Responder
@@ -101,8 +102,7 @@ class Connection_manager:
             self.send_message("Ready to put Bottle on B! Use !help to see commands.", channel)
 
     def join_all_saved_channels(self):
-        with open(Definitions.CHANNELS_FILE, 'r') as file:
-            channels_to_join = file.read().splitlines()
+        channels_to_join = get_channel_names()
         if self.connection.is_connected():
             self.join_channels([Configs.get('Bot')])
             self.join_channels(channels_to_join)
