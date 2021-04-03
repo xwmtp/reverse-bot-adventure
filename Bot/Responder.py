@@ -1,13 +1,16 @@
 from Bot.Commands.Bot_settings.Bot_settings_handler import Bot_settings_handler
 from Bot.Commands.Other_commands.General_commands import General_commands
+from Bot.Commands.Racetime.Racetime_handler import Racetime_handler
 from Bot.Commands.Speedrun_com.SRC_handler import SRC_handler
 
 class Responder:
 
     def __init__(self):
         self.handlers = [
+            General_commands(),
             SRC_handler(),
-            General_commands()
+            Racetime_handler()
+
         ]
         self.settings_handler = Bot_settings_handler()
 

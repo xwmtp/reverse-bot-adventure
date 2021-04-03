@@ -1,4 +1,4 @@
-from Bot.Commands.Speedrun_com.Leaderboard import download_leaderboard
+from Bot.Commands.Speedrun_com.Leaderboard_data import download_leaderboard
 from Bot.Utils import readjson
 from dataclasses import dataclass
 from typing import List

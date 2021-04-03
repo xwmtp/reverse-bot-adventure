@@ -1,7 +1,7 @@
 from Bot.Commands.Abstract_message_handler import Message_handler
 from Bot.Commands.Bot_settings.Manage_channels import get_channel_settings
 from Bot.Commands.Speedrun_com.Categories_matcher import Categories_matcher
-from Bot.Commands.Speedrun_com.Leaderboard import download_leaderboard
+from Bot.Commands.Speedrun_com.Leaderboard_data import download_leaderboard
 from Bot.Config import Configs
 from Bot.Utils import make_ordinal
 import logging
@@ -24,13 +24,10 @@ class SRC_handler(Message_handler):
         args_string = ' '.join(split_msg[1:])
         response = None
 
-        # pb of specific user
         if command in self.commands['wr']:
             response = self.wr(args_string)
         if command in self.commands['leaderboard']:
             response = self.src_link(args_string)
-        #if command in self.commands['user_lookup']:
-        #    response = self.user_pb(args_string)
         if command in self.commands['pb']:
             response = self.pb(args_string, channel)
 
@@ -45,7 +42,7 @@ class SRC_handler(Message_handler):
             return
         category, var = match
         leaderboard = download_leaderboard(category, var)
-        streamer_src = self.lookup_src_name(channel)
+        streamer_src = lookup_src_name(channel)
         pb_run = leaderboard.get_pb(streamer_src)
 
         category_name = f"{category.name} - {var.name}" if var else category.name
@@ -77,13 +74,13 @@ class SRC_handler(Message_handler):
             category, _ = match
             return category.weblink
 
-    def lookup_src_name(self, channel):
-        channel_settings = get_channel_settings(channel[1:].lower())
-        streamer_src = channel_settings.src_name
-        if streamer_src == '':
-            return channel[1:]
-        else:
-            return streamer_src
+def lookup_src_name(channel):
+    channel_settings = get_channel_settings(channel[1:].lower())
+    streamer_src = channel_settings.src_name
+    if streamer_src == '':
+        return channel[1:]
+    else:
+        return streamer_src
 
 
 
