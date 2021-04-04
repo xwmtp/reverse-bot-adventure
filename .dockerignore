@@ -1,0 +1,7 @@
+/venv
+/logs
+/docs
+/Settings
+.gitignore
+README.md
+run.bat

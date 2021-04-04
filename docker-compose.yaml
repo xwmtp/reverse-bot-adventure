@@ -1,0 +1,10 @@
+version: '3.7'
+services:
+  reversebotadventure:
+    build:
+      context: .
+    image: reversebotadventure
+    volumes:
+      - /reverse-bot-adventure/volumes/logs/twitch:/etc/reverse-bot-adventure/logs
+      - /reverse-bot-adventure/volumes/Settings:/etc/reverse-bot-adventure/Settings
+    restart: unless-stopped

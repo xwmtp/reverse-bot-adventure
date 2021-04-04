@@ -7,4 +7,4 @@ LOGGING_LEVELS = [logging.DEBUG, logging.INFO, logging.WARNING, logging.CRITICAL
 
 #ROOT_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 ROOT_DIR = Path(__file__).resolve().parent.parent.parent
-CHANNELS_FILE = ROOT_DIR / 'Bot/Commands/Bot_settings/Settings_files/channels.txt'
+CHANNELS_FILE = ROOT_DIR / 'Settings/channels.txt'

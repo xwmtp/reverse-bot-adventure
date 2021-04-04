@@ -42,7 +42,6 @@ class Connection_manager:
             if self.data_reader.queue_empty():
                 return
 
-
     def run(self):
         while (True):
             message = self.get_next_message()
