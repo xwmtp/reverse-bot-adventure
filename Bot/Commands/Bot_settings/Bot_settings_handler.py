@@ -76,7 +76,7 @@ class Bot_settings_handler(Message_handler):
 
 
     def help(self):
-        return {"response" : "Commands: !add, !remove"}
+        return {"response" : "Commands: !add, !remove, !setsrc, !setracetime (see panels)"}
 
     def channels_count(self, sender):
         if sender.lower() != Configs.get('admin').lower():

@@ -19,11 +19,12 @@ class General_commands(Message_handler):
                 return eval(f'self.{function_name}("{msg}","{sender}")')
 
     def help(self, msg, sender):
-        return "Commands: !wr, !pb, !src, !race, !commands, !help. " + \
+        return "Commands: !wr, !pb, !src, !race, !goal, !entrants, !commands, !help. " + \
                 "The wr, pb and src commands can take a category as their argument. " + \
                 "Visit twitch.tv/ReverseBotAdventure to remove the bot or set your src/racetime user names (use !help). " + \
-                "Don't forget to mod the bot in your chat for quick responses"
+                "Don't forget to mod the bot in your chat for quick responses."
 
     def commands_list(self, msg, sender):
-        return "Commands: !wr, !pb, !src, !race, !commands, !help. " + \
-               "The wr, pb and src commands can take a category as their argument."
+        return "Commands: !wr, !pb, !src, !race, !goal, !entrants, !commands, !help. " + \
+               "The wr, pb and src commands can take a category as their argument." + \
+               "Without argument, they search for a category in your stream title."
