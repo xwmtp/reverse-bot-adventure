@@ -1,7 +1,6 @@
 from Bot.Config import Definitions
-from Bot.Commands.Speedrun_com.Categories_info import download_src_category_info
-from dataclasses import dataclass, field
-from typing import List
+from Bot.Commands.Speedrun_com.Categories_SRC_info import download_src_category_info
+from dataclasses import dataclass
 import json
 import re
 import logging
@@ -61,6 +60,8 @@ class Categories_matcher:
         var_id: str = None
         var_name: str = None
 
+    # only return the found match if its id is actually present in the src info
+    # log warning if there is an id match, but the names don't match (e.g. when a category has changed name on src)
     def match_found_category_with_src_info(self, match):
         for src_category_info in self.src_categories_info:
             if match.category_id == src_category_info.id:
