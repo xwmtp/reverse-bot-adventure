@@ -98,8 +98,9 @@ class Connection_manager:
         for channel in channel_names:
             self.connection.join_channel(channel)
             self.process_welcome_messages()
-        for channel in channel_names:
-            self.send_message("Ready to put Bottle on B! Use !help to see commands.", channel)
+        if Configs.get("post_welcome_message").lower() == "true":
+            for channel in channel_names:
+                self.send_message("Ready to put Bottle on B! Use !help to see commands.", channel)
 
     def join_all_saved_channels(self):
         channels_to_join = get_channel_names()
