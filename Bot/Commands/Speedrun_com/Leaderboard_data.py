@@ -1,6 +1,6 @@
 from dataclasses import dataclass
 
-from Bot.Utils import readjson, seconds_to_hhmmss
+from Bot.Utils import make_request, seconds_to_hhmmss
 
 
 def download_leaderboard(category, var, top=None):
@@ -11,7 +11,7 @@ def download_leaderboard(category, var, top=None):
         parameters.append(f'top={top}')
     parameters.append("embed=players")
     parameters = '&'.join(parameters)
-    data = readjson(
+    data = make_request(
         f"https://www.speedrun.com/api/v1/leaderboards/{category.game_id}/category/{category.id}?{parameters}")
     if 'data' not in data:
         return

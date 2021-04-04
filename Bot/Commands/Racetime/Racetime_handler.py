@@ -58,11 +58,11 @@ class Racetime_handler(Message_handler):
 
     def find_live_race(self, name):
         for game in GAME_SLUGS:
-            data = readjson(f'https://racetime.gg/{game}/data')
+            data = make_request(f'https://racetime.gg/{game}/data')
             if not data:
                 return
             for race in data['current_races']:
-                race_data = readjson(f"https://racetime.gg{race['data_url']}")
+                race_data = make_request(f"https://racetime.gg{race['data_url']}")
                 entrant_names = [e['user']['name'].lower() for e in race_data['entrants']]
                 if name.lower() in entrant_names:
                     if race_data.status not in ['cancelled', 'finished']:
@@ -73,7 +73,7 @@ class Racetime_handler(Message_handler):
         if name.lower() not in self.race_urls:
             return
         url = self.race_urls[name.lower()]
-        data = readjson(f"https://racetime.gg{url}")
+        data = make_request(f"https://racetime.gg{url}")
         if not data or data['status']:
             return
         ended_at = dt.datetime.strptime(data['ended_at'], "%Y-%m-%dT%H:%M:%S.%fZ")

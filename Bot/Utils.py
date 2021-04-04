@@ -6,11 +6,11 @@ import os
 
 ### File Handling ###
 
-def readjson(url, text_only=False, tries=5):
-
-    for i in range(tries):
+def make_request(url, text_only=False, attempts=5):
+    status=""
+    for i in range(attempts):
         if i > 0:
-            logging.info(f"Connecting to api failed (status {status}), trying again... try ({i})")
+            logging.info(f"Connecting failed (status {status}), trying again... attempt ({i})")
         response = requests.get(url)
 
         status = response.status_code
@@ -23,8 +23,8 @@ def readjson(url, text_only=False, tries=5):
         if status == 404:
             return
 
-    error_message = "Error in accessing api:", status, "(after", tries, "tries)"
-    logging.critical(error_message)
+    logging.critical(f"Error while accessing {url}:", status, "(after", attempts, "attempts)")
+
 
 def copy_file(path, old_file_name, new_file_name):
     try:

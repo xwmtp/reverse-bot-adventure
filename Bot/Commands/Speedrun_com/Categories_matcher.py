@@ -19,6 +19,7 @@ class Categories_matcher:
             if match:
                 return self.match_found_category_with_src_info(match)
 
+    #todo less hacky solution for memes
     def match_on_full_category(self, string, category):
         string = transform_query(string)
         string_remainder = self.match_on_category(string, category)
@@ -34,7 +35,8 @@ class Categories_matcher:
             if self.match_on_variable(string_remainder, var):
                 return self.Category_match(category["id"], category["name"], var["id"], var["name"])
 
-        return self.Category_match(category["id"], category["name"])
+        if category["name"].lower() != "memes" or string == "memes":
+            return self.Category_match(category["id"], category["name"])
 
     def match_on_category(self, string, category):
         string = transform_query(string)

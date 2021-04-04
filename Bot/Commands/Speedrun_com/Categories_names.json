@@ -24,6 +24,7 @@
         "id": "0133d8y1",
         "name": "No SRM",
         "nicknames": [
+          "NoSRM",
           "No Stale Reference Manipulation"
         ]
       }
@@ -47,6 +48,7 @@
         "id": "5led9961",
         "name": "No SRM",
         "nicknames": [
+          "NoSRM",
           "No Stale Reference Manipulation"
         ]
       }
@@ -137,6 +139,7 @@
         "id": "5q85yy6q",
         "name": "No SRM",
         "nicknames": [
+          "NoSRM",
           "No Stale Reference Manipulation"
         ]
       },
@@ -171,6 +174,7 @@
         "id": "4lx3rrgl",
         "name": "No SRM",
         "nicknames": [
+          "NoSRM",
           "No Stale Reference Manipulation"
         ]
       }
@@ -269,6 +273,7 @@
         "id": "5q82gkkq",
         "name": "No SRM",
         "nicknames": [
+          "NoSRM",
           "No Stale Reference Manipulation"
         ]
       },
@@ -336,6 +341,7 @@
         "id": "rqvwvm61",
         "name": "No SRM",
         "nicknames": [
+          "NoSRM",
           "No Stale Reference Manipulation"
         ]
       },
@@ -401,6 +407,7 @@
         "id": "8100xv51",
         "name": "No SRM",
         "nicknames": [
+          "NoSRM",
           "No Stale Reference Manipulation"
         ]
       },
@@ -474,6 +481,7 @@
           "Any%",
           "Defeat Ganon",
           "Defeat Ganon No SRM",
+          "Defeat Ganon NoSRM",
           "Defeat Ganon No Source Requirement",
           "Beat Ganon"
         ]
@@ -625,7 +633,8 @@
         "id": "gq7rkkrl",
         "name": "No SRM",
         "nicknames": [
-          "No Source Requirement"
+          "NoSRM",
+          "No Stale Reference Manipulation"
         ]
       },
       {
@@ -662,6 +671,7 @@
         "nicknames": [
           "Any% No SRM",
           "No SRM",
+          "NoSRM",
           "Normal"
         ]
       },
@@ -670,6 +680,7 @@
         "name": "All Dungeons - No SRM",
         "nicknames": [
           "AD No SRM",
+          "AD NoSRM",
           "AD - No SRM",
           "All Dungeons",
           "AD"

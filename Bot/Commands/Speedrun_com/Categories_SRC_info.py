@@ -1,5 +1,5 @@
 from Bot.Commands.Speedrun_com.Leaderboard_data import download_leaderboard
-from Bot.Utils import readjson
+from Bot.Utils import make_request
 from dataclasses import dataclass
 from typing import List
 import logging
@@ -14,7 +14,7 @@ def download_src_category_info():
     logging.info("Downloading categories info...")
     categories = []
     for game, game_id in GAME_IDs.items():
-        categories_data = readjson(f"https://www.speedrun.com/api/v1/games/{game_id}/categories?embed=variables")
+        categories_data = make_request(f"https://www.speedrun.com/api/v1/games/{game_id}/categories?embed=variables")
         if not 'data' in categories_data or categories_data['data'] == []:
             continue
         for category_data in categories_data['data']:
