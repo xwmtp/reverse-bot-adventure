@@ -14,7 +14,8 @@ class Bot_settings_handler(Message_handler):
             'setsrc' : ['!setsrc', "!set_src"],
             'setracetime' : ['!setracetime', '!setrtgg', '!set_racetime', "!set_rtgg", '!setracetimegg', '!set_racetimegg'],
             'help' : ['!help', '!commands', '!commands'],
-            'channels' : ['!channels', '!count']
+            'channels' : ['!channels', '!count'],
+            "ping" : ['!ping']
         }
         self.channels_file = Definitions.CHANNELS_FILE
 
@@ -35,6 +36,8 @@ class Bot_settings_handler(Message_handler):
             return self.set_src(sender, args)
         if command in self.commands['setracetime']:
             return self.set_racetime(sender, args)
+        if command in self.commands['ping']:
+            return self.ping()
 
     def add(self, sender):
         logging.info("Received !add command")
@@ -75,8 +78,11 @@ class Bot_settings_handler(Message_handler):
             return {"response": "Could not successfully remove myself from your channel."}
 
 
+    def ping(self):
+        return "Pong!"
+
     def help(self):
-        return {"response" : "Commands: !add, !remove, !setsrc, !setracetime (see panels)"}
+        return {"response" : "Commands: !add, !remove, !setsrc, !setracetime, !ping (see panels). More information: https://github.com/xwmtp/reverse-bot-adventure"}
 
     def channels_count(self, sender):
         if sender.lower() != Configs.get('admin').lower():

@@ -32,6 +32,7 @@ class Connection_manager:
         self.join_all_saved_channels()
 
     def process_welcome_messages(self):
+        logging.debug("Processing welcome messages...")
         while (True):
             message = self.get_next_message()
             if message:
@@ -40,6 +41,7 @@ class Connection_manager:
                     self.send_message(response, message.channel)
 
             if self.data_reader.queue_empty():
+                logging.debug("Processed welcome messages.")
                 return
 
     def run(self):
@@ -76,7 +78,6 @@ class Connection_manager:
 
         except socket.error as e:
             logging.critical(f"Socket error: {repr(e)}")
-            print("reconnecting because socket error")
             self.reconnect()
 
         except ConnectionResetError as e:
@@ -92,27 +93,28 @@ class Connection_manager:
             channel = '#' + channel
         self.connection.send_message(content, channel)
 
-    def join_channels(self, channel_names):
+    def join_channels(self, channel_names, send_welcome_message):
         channel_names = [c for c in channel_names if len(c) > 1]
         for channel in channel_names:
             self.connection.join_channel(channel)
             self.process_welcome_messages()
-        if Configs.get("post_welcome_message").lower() == "true":
+        if Configs.get("post_welcome_message").lower() == "true" and send_welcome_message:
             for channel in channel_names:
                 self.send_message("Ready to put Bottle on B! Use !help to see commands.", channel)
 
-    def join_all_saved_channels(self):
+    def join_all_saved_channels(self, send_welcome_message=True):
         channels_to_join = get_channel_names()
+        logging.info(f"Joining channels {channels_to_join}...")
         if self.connection.is_connected():
-            self.join_channels([Configs.get('Bot')])
-            self.join_channels(channels_to_join)
+            self.join_channels([Configs.get('Bot')], send_welcome_message)
+            self.join_channels(channels_to_join, send_welcome_message)
         else:
             logging.critical("Connection is not connected, won't join channels.")
 
     def reconnect(self):
         self.reconnecter.reconnect()
         self.process_welcome_messages()
-        self.join_all_saved_channels()
+        self.join_all_saved_channels(send_welcome_message=False)
 
 
     def process_bot_channel_response(self, message, response):
@@ -120,7 +122,7 @@ class Connection_manager:
             return
         if 'actions' in response:
             if 'add' in response['actions']:
-                self.join_channels([message.sender])
+                self.join_channels([message.sender], send_welcome_message=True)
             if 'remove' in response['actions']:
                 self.connection.part_channel(message.sender)
         if 'response' in response:

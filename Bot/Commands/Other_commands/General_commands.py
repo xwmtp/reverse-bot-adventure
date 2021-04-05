@@ -22,9 +22,8 @@ class General_commands(Message_handler):
         return "Commands: !wr, !pb, !src, !race, !goal, !entrants, !commands, !help. " + \
                 "The wr, pb and src commands can take a category as their argument. " + \
                 "Visit twitch.tv/ReverseBotAdventure to remove the bot or set your src/racetime user names (use !help). " + \
-                "Don't forget to mod the bot in your chat for quick responses."
+                "Don't forget to mod the bot in your chat for quick responses. " + \
+                "More information: github.com/xwmtp/reverse-bot-adventure"
 
     def commands_list(self, msg, sender):
-        return "Commands: !wr, !pb, !src, !race, !goal, !entrants, !commands, !help. " + \
-               "The wr, pb and src commands can take a category as their argument." + \
-               "Without argument, they search for a category in your stream title."
+        return "Commands: !wr, !pb, !src, !race, !goal, !entrants, !commands, !help"

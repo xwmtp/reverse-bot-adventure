@@ -2,6 +2,7 @@ from Bot.Commands.Bot_settings.Bot_settings_handler import Bot_settings_handler
 from Bot.Commands.Other_commands.General_commands import General_commands
 from Bot.Commands.Racetime.Racetime_handler import Racetime_handler
 from Bot.Commands.Speedrun_com.SRC_handler import SRC_handler
+import logging
 
 class Responder:
 
@@ -17,7 +18,13 @@ class Responder:
     def get_response(self, message):
         for handler in self.handlers:
             if handler.triggered(message.content.split()[0]):
-                return handler.handle_message(message.content.lower(), message.sender, message.channel)
+                try:
+                    return handler.handle_message(message.content.lower(), message.sender, message.channel)
+                except Exception as e:
+                    logging.error(f"An error occured while handling message {message.content} in channel {message.channel}. Error: {repr(e)}")
 
     def handle_bot_channel_message(self, message):
-        return self.settings_handler.handle_message(message.content.lower(), message.sender, message.channel)
+        try:
+            return self.settings_handler.handle_message(message.content.lower(), message.sender, message.channel)
+        except Exception as e:
+            logging.error(f"An error occured while handling message {message.content} in the Bot channel. Error: {repr(e)}")

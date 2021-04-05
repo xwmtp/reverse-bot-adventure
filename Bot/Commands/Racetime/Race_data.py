@@ -1,5 +1,7 @@
 from dataclasses import dataclass
 from typing import List
+import datetime as dt
+import isodate
 
 def parse_race_data(data):
     entrants = [parse_entrant_data(entrant_data) for entrant_data in data['entrants']]
@@ -10,23 +12,28 @@ def parse_race_data(data):
                 entrants=entrants)
 
 def parse_entrant_data(data):
-    if data['status'] == 'done':
-        return Entrant(data['name'], data['status']['value'], data['place'], data['finish_time'])
+    if data['status']['value'] == 'done':
+        return Entrant(data['user']['name'], data['status']['value'], data['place'], data['finish_time'])
     else:
-        return Entrant(data['name'], data['status']['value'])
+        return Entrant(data['user']['name'], data['status']['value'])
 
 
 @dataclass()
 class Entrant:
     name: str
     status: str
-    rank: int = None
-    finish_time: str = None
+    rank: int = 99999
+    finish_time_iso: str = None
+
+    def get_finish_time(self):
+        parsed_time = isodate.parse_duration(self.finish_time_iso)
+        return dt.timedelta(seconds = parsed_time.seconds)
+
 
     def __str__(self):
         str = self.name
-        if self.rank and self.finish_time:
-            str = f"{self.rank}. " + str + f" {(self.finish_time)}"
+        if self.rank and self.finish_time_iso:
+            str = f"{self.rank}. " + str + f" {(self.get_finish_time())}"
         for status in ['dnf', 'dq']:
             if self.status == status:
                 str += f" ({status})"
@@ -42,8 +49,8 @@ class Race:
     entrants: List[Entrant]
 
     def __str__(self):
-        return f"{self.game} - {self.category} ({self.url}): {self.get_string_entrants()}"
+        return f"{self.game} - {self.category} racetime.gg{self.url} {self.get_string_entrants()}"
 
     def get_string_entrants(self):
         entrants_strings = [str(e) for e in sorted(self.entrants, key=lambda e: e.rank)]
-        return ' | '.join(entrants_strings)
+        return f"{len(self.entrants)} entrants: {' | '.join(entrants_strings)}"
