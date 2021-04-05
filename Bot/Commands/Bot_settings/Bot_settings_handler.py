@@ -79,7 +79,7 @@ class Bot_settings_handler(Message_handler):
 
 
     def ping(self):
-        return "Pong!"
+        return {"response" : "Pong!"}
 
     def help(self):
         return {"response" : "Commands: !add, !remove, !setsrc, !setracetime, !ping (see panels). More information: https://github.com/xwmtp/reverse-bot-adventure"}
