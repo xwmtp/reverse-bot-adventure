@@ -99,7 +99,7 @@
           "Unrestricted Any%",
           "Bug Limit",
           "Any% Bug Limit",
-          "Big Limit Any%"
+          "Bug Limit Any%"
         ]
       },
       {
@@ -281,8 +281,8 @@
         "id": "4qy5nz71",
         "name": "NSR",
         "nicknames": [
-          "No Soure Requirement",
-          "No Soure Requirements"
+          "No Source Requirement",
+          "No Source Requirements"
         ]
       },
       {

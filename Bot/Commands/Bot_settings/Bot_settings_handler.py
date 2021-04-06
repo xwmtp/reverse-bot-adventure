@@ -14,7 +14,8 @@ class Bot_settings_handler(Message_handler):
             'setsrc' : ['!setsrc', "!set_src"],
             'setracetime' : ['!setracetime', '!setrtgg', '!set_racetime', "!set_rtgg", '!setracetimegg', '!set_racetimegg'],
             'help' : ['!help', '!commands', '!commands'],
-            'channels' : ['!channels', '!count'],
+            'channels_names' : ['!channels', '!count'],
+            'channels_settings': ['!channels_settings', "!channel_settings"],
             "ping" : ['!ping']
         }
         self.channels_file = Definitions.CHANNELS_FILE
@@ -30,14 +31,18 @@ class Bot_settings_handler(Message_handler):
             return self.remove(sender)
         if command in self.commands['help']:
             return self.help()
-        if command in self.commands['channels']:
-            return self.channels_count(sender)
         if command in self.commands['setsrc']:
             return self.set_src(sender, args)
         if command in self.commands['setracetime']:
             return self.set_racetime(sender, args)
         if command in self.commands['ping']:
             return self.ping()
+
+        # admin
+        if command in self.commands['channels_names']:
+            return self.channels_names(sender)
+        if command in self.commands['channels_settings']:
+            return self.channels_settings(sender)
 
     def add(self, sender):
         logging.info("Received !add command")
@@ -84,13 +89,18 @@ class Bot_settings_handler(Message_handler):
     def help(self):
         return {"response" : "Commands: !add, !remove, !setsrc, !setracetime, !ping (see panels). More information: https://github.com/xwmtp/reverse-bot-adventure"}
 
-    def channels_count(self, sender):
+    def channels_names(self, sender):
         if sender.lower() != Configs.get('admin').lower():
             return
-        with open(self.channels_file, 'r') as file:
-            channels = file.read().splitlines()
-        channels = [c for c in channels if len(c) > 1]
-        return {"response": f"{len(channels)} connected: {', '.join(channels[:50])}"}
+        names = get_channel_names()
+        return {"response": f"{len(names)} connected: {', '.join(names[:50])}"}
+
+    def channels_settings(self, sender):
+        if sender.lower() != Configs.get('admin').lower():
+            return
+        channels_settings = read_channels_settings()
+        channels_strings = [f"{c.channel}|{c.src_name}|{c.racetime_name}" for c in channels_settings]
+        return {"response": f"{len(channels_strings)} connected: {', '.join(channels_strings[:50])}"}
 
     def set_src(self, sender, args):
         if len(args) == 0:
