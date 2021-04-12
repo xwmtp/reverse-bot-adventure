@@ -191,7 +191,7 @@ class Reconnecter:
                 try:
                     self.validate_reconnect = True
                     self.connection.send_ping(msg='validating_reconnect')
-                    logging.info("Reconnected, awaiting validation PONG.")
+                    logging.critical("Reconnected, awaiting validation PONG.")
                     return True
                 except Exception as e:
                     logging.error(f"Error occured while reconnecting: {repr(e)}")
@@ -202,7 +202,7 @@ class Reconnecter:
         logging.info("Received PONG.")
         self.awaiting_pong = False
         if self.validate_reconnect:
-            logging.info('Reconnect successful, received PONG.')
+            logging.critical('Reconnect successful, received PONG.')
             self.validate_reconnect = False
 
     def handle_timeout(self):
@@ -214,7 +214,7 @@ class Reconnecter:
             self.send_ping()
 
     def send_ping(self, msg = 'validating_connection'):
-        logging.info(f"Sent validation ping 'msg'.")
+        logging.info(f"Sent validation ping '{msg}'.")
         self.last_ping_sent = time.time()
         self.connection.send_ping(msg)
         self.awaiting_pong = True

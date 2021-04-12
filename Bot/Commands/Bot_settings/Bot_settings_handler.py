@@ -13,7 +13,7 @@ class Bot_settings_handler(Message_handler):
             'remove': ['!remove', '!delete', '!remove', '!part'],
             'setsrc' : ['!setsrc', "!set_src"],
             'setracetime' : ['!setracetime', '!setrtgg', '!set_racetime', "!set_rtgg", '!setracetimegg', '!set_racetimegg'],
-            'help' : ['!help', '!commands', '!commands'],
+            'help' : ['!help', '!commands', '!command'],
             'channels_names' : ['!channels', '!count'],
             'channels_settings': ['!channels_settings', "!channel_settings"],
             "ping" : ['!ping']

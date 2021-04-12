@@ -7,7 +7,7 @@ class General_commands(Message_handler):
         super().__init__()
 
         self.commands = {
-            'commands_list': ['!command', '!commands'],
+            'commands_list': ['!commands'],
             'help' : ['!help']
         }
 
