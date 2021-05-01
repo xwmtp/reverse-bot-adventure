@@ -13,6 +13,13 @@ def get_channel_settings_manager():
                         file_path=path,
                         delimiter=DELIMITER)
 
+def get_probabilities_settings_manager():
+    path = SETTINGS_DIR / 'probabilities.txt'
+    create_if_not_exist(path)
+    return File_manager(setting_class=Probabilities_setting,
+                        file_path=path,
+                        delimiter=DELIMITER)
+
 
 
 def create_if_not_exist(file_path):

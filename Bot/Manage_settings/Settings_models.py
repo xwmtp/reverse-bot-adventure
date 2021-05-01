@@ -13,3 +13,8 @@ class Setting:
 class Channel_setting(Setting):
     src_name: str = ''
     racetime_name: str = ''
+
+
+@dataclass
+class Probabilities_setting(Setting):
+    outcomes: str = ''
