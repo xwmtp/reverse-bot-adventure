@@ -1,9 +1,8 @@
 from Bot.Commands.Abstract_message_handler import Message_handler
-from Bot.Commands.Bot_settings.Manage_channels import get_channel_settings
+from Bot.Manage_settings.File_manager_factory import get_channel_settings_manager
 from Bot.Commands.Speedrun_com.Categories_matcher import Categories_matcher
 from Bot.Commands.Speedrun_com.Leaderboard_data import download_leaderboard
 from Bot.Utils import make_ordinal, make_request
-import logging
 
 class SRC_handler(Message_handler):
 
@@ -16,6 +15,7 @@ class SRC_handler(Message_handler):
             'leaderboard'    : ['!leaderboard', '!leaderboards', '!src']
         }
         self.categories_matcher = Categories_matcher()
+        self.settings_manager = get_channel_settings_manager()
 
     def handle_message(self, msg, sender, channel):
         split_msg = msg.split(' ')
@@ -44,7 +44,7 @@ class SRC_handler(Message_handler):
             return
         category, var = matched_category
         leaderboard = download_leaderboard(category, var)
-        streamer_src = lookup_src_name(channel)
+        streamer_src = self.lookup_src_name(channel)
         pb_run = leaderboard.get_pb(streamer_src)
 
         category_name = f"{category.name} - {var.name}" if var else category.name
@@ -83,26 +83,16 @@ class SRC_handler(Message_handler):
         else:
             return self.categories_matcher.match(args_str)
 
-def lookup_src_name(channel):
-    channel_settings = get_channel_settings(channel[1:].lower())
-    streamer_src = channel_settings.src_name
-    if streamer_src == '':
-        return channel[1:]
-    else:
-        return streamer_src
+    def lookup_src_name(self, channel):
+        channel_settings = self.settings_manager.get_setting(channel[1:].lower())
+        streamer_src = channel_settings.src_name
+        if streamer_src == '':
+            return channel[1:]
+        else:
+            return streamer_src
 
 def lookup_stream_title(channel):
     title = make_request(f"https://decapi.me/twitch/title/{channel}", text_only=True)
     if title:
         return ' '.join(title.split()).lower()
 
-
-
-
-
-    #
-    # def get_category(self, arguments):
-    #     if arguments == '':
-    #         arguments = Stream_title.get_stream_category()
-    #     category = self.category_matcher.match_category(arguments)
-    #     return category

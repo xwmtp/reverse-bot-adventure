@@ -1,6 +1,6 @@
 from Bot.Commands.Abstract_message_handler import Message_handler
-from Bot.Commands.Bot_settings.Manage_channels import *
-from Bot.Config import Configs, Definitions
+from Bot.Manage_settings.File_manager_factory import get_channel_settings_manager
+from Bot.Config import Configs
 import logging
 
 
@@ -18,7 +18,7 @@ class Bot_settings_handler(Message_handler):
             'channels_settings': ['!channels_settings', "!channel_settings"],
             "ping" : ['!ping']
         }
-        self.channels_file = Definitions.CHANNELS_FILE
+        self.file_manager = get_channel_settings_manager()
 
     def handle_message(self, msg, sender, channel):
         split_msg = msg.lower().split()
@@ -46,13 +46,13 @@ class Bot_settings_handler(Message_handler):
 
     def add(self, sender):
         logging.info("Received !add command")
-        settings = read_channels_settings()
+        settings = self.file_manager.read_settings()
 
         for setting in settings:
-            if setting.channel.lower() == sender.lower():
+            if setting.name.lower() == sender.lower():
                 return {"response": "I'm already in your channel!"}
 
-        success = add_new_channel_setting(sender)
+        success = self.file_manager.add_new_setting(sender)
         if success:
             return {"actions": {"add": sender},
                     "response": "Added to your channel. Use !help in your chat to see commands."}
@@ -60,28 +60,14 @@ class Bot_settings_handler(Message_handler):
             logging.error(f"Could not add user {sender} to channels list.")
             return {"response": "Could not add myself to your channel, please try again."}
 
-
     def remove(self, sender):
-        settings = read_channels_settings()
-
-        new_settings = []
-        found_sender = False
-        for setting in settings:
-            if setting.channel.lower() != sender.lower():
-                new_settings.append(setting)
-            else:
-                found_sender = True
-        if not found_sender:
-            return {"response": "I'm currently not in your channel!"}
-
-        success = overwrite_channels_settings(new_settings)
+        success = self.file_manager.remove_setting(sender)
         if success:
             return {"actions": {"remove": sender},
                     "response": "Removed myself from your channel."}
         else:
             logging.error(f"Could not remove user {sender} from channels list.")
             return {"response": "Could not successfully remove myself from your channel."}
-
 
     def ping(self):
         return {"response" : "Pong!"}
@@ -92,21 +78,26 @@ class Bot_settings_handler(Message_handler):
     def channels_names(self, sender):
         if sender.lower() != Configs.get('admin').lower():
             return
-        names = get_channel_names()
+        settings = self.file_manager.read_settings()
+        names = [setting.name for setting in settings]
         return {"response": f"{len(names)} connected: {', '.join(names[:50])}"}
 
     def channels_settings(self, sender):
         if sender.lower() != Configs.get('admin').lower():
             return
-        channels_settings = read_channels_settings()
-        channels_strings = [f"{c.channel}|{c.src_name}|{c.racetime_name}" for c in channels_settings]
+        channels_settings = self.file_manager.read_settings()
+        channels_strings = [f"{c.name}|{c.src_name}|{c.racetime_name}" for c in channels_settings]
         return {"response": f"{len(channels_strings)} connected: {', '.join(channels_strings[:50])}"}
 
     def set_src(self, sender, args):
         if len(args) == 0:
             return {"response" : f"Provide your Speedrun.com user name with the command, e.g. !setsrc username"}
         src_name = ' '.join(args)
-        success = update_channel_settings(sender, src_name=src_name)
+        setting = self.file_manager.get_setting(sender)
+        if not setting:
+            return {"response" : f"You haven't added me yet to your channel! Use !add first."}
+        setting.src_name = src_name
+        success = self.file_manager.update_setting(setting)
         if success:
             return {"response": f"Your Speedrun.com user name has been set to '{format_name(src_name)}'"}
         else:
@@ -117,11 +108,16 @@ class Bot_settings_handler(Message_handler):
         if len(args) == 0:
             return {"response" : f"Provide your Racetime.gg user name with the command, e.g. !setracetime username"}
         racetime_name = ' '.join(args)
-        success = update_channel_settings(sender, racetime_name=racetime_name)
+        setting = self.file_manager.get_setting(sender)
+        if not setting:
+            return {"response": f"You haven't added me yet to your channel! Use !add first."}
+        setting.src_name = racetime_name
+        success = self.file_manager.update_setting(setting)
         if success:
             return {"response": f"Your Racetime.gg user name has been set to '{format_name(racetime_name)}'"}
         else:
             logging.error(f"Could not save racetime name {racetime_name} for {sender}")
             return {"response": f"Could not successfully save '{format_name(racetime_name)}' as your Racetime.gg user name"}
 
-
+def format_name(name):
+    return name.replace('#','')[:30]

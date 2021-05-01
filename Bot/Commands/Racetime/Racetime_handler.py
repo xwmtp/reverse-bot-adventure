@@ -1,5 +1,5 @@
 from Bot.Commands.Abstract_message_handler import Message_handler
-from Bot.Commands.Bot_settings.Manage_channels import get_channel_settings
+from Bot.Manage_settings.File_manager_factory import get_channel_settings_manager
 from Bot.Commands.Racetime.Race_data import parse_race_data
 from Bot.Utils import *
 import datetime as dt
@@ -20,11 +20,12 @@ class Racetime_handler(Message_handler):
             'entrants': ['!entrants', '!entrant']
         }
         self.race_urls = {}
+        self.settings_manager = get_channel_settings_manager()
 
     def handle_message(self, msg, sender, channel):
         split_msg = msg.lower().split(' ')
         command = split_msg[0]
-        streamer_rtgg = lookup_racetime_name(channel)
+        streamer_rtgg = self.lookup_racetime_name(channel)
 
         if command in self.commands['race']:
             return self.race(streamer_rtgg)
@@ -91,10 +92,10 @@ class Racetime_handler(Message_handler):
             del self.race_urls[name.lower()]
 
 
-def lookup_racetime_name(channel):
-    channel_settings = get_channel_settings(channel[1:].lower())
-    streamer_rtgg = channel_settings.racetime_name
-    if streamer_rtgg == '':
-        return channel[1:]
-    else:
-        return streamer_rtgg
+    def lookup_racetime_name(self, channel):
+        channel_setting = self.settings_manager.get_setting(channel[1:].lower())
+        streamer_rtgg = channel_setting.racetime_name
+        if streamer_rtgg == '':
+            return channel[1:]
+        else:
+            return streamer_rtgg

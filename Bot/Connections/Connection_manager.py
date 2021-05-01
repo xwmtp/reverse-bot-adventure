@@ -1,8 +1,8 @@
-from Bot.Commands.Bot_settings.Manage_channels import get_channel_names
+from Bot.Manage_settings.File_manager_factory import get_channel_settings_manager
 from Bot.Connections.Message import convert_irc_message
 from Bot.Connections.IRC_connection import IRC_connection
 from Bot.Responder import Responder
-from Bot.Config import Configs, Definitions
+from Bot.Config import Configs
 import socket
 import logging
 import time
@@ -25,6 +25,7 @@ class Connection_manager:
         self.responder = responder
         self.data_reader = Data_reader(connection)
         self.reconnecter = Reconnecter(connection)
+        self.settings_manager = get_channel_settings_manager()
 
     def setup(self):
         self.connection.connect_to_irc()
@@ -103,7 +104,8 @@ class Connection_manager:
                 self.send_message("Ready to put Bottle on B! Use !help to see commands.", channel)
 
     def join_all_saved_channels(self, send_welcome_message=True):
-        channels_to_join = get_channel_names()
+        channel_settings = self.settings_manager.read_settings()
+        channels_to_join = [setting.name for setting in channel_settings]
         logging.info(f"Joining channels {channels_to_join}...")
         if self.connection.is_connected():
             self.join_channels([Configs.get('Bot')], send_welcome_message)
