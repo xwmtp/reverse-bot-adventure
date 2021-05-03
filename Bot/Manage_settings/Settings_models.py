@@ -15,6 +15,10 @@ class Channel_setting(Setting):
     racetime_name: str = ''
 
 
+# outcome names have to match probability_event names
 @dataclass
 class Probabilities_setting(Setting):
-    outcomes: str = ''
+    dampe: str = ''
+    rock: str = ''
+    truth_spinner: str = ''
+    bush_patch: str = ''

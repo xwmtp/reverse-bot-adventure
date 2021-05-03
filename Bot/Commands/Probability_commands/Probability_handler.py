@@ -9,12 +9,17 @@ class Probability_handler(Message_handler):
 
         self.commands = {
             'dampe': ['!dampe'],
-            'rock' : ['!rock', '!rocks']
+            'rock' : ['!rock', '!rocks'],
+            'truth_spinner' : ['!spinner', '!truthspinner', '!truth_spinner'],
+            'bush_patch' : ['!bushes', '!bush', '!bushpatch', '!bushespatch', '!bush_patch', '!bushes_patch']
         }
 
         self.file_manager = get_probabilities_settings_manager()
         self.probability_events = {
-            'dampe' : Dampe_event('Dampe')
+            'dampe' : Dampe_event(),
+            'rock' : Rock_event(),
+            'truth_spinner' : Spinner_event(),
+            'bush_patch' : Bush_event()
         }
 
     def handle_message(self, msg, sender, channel):
