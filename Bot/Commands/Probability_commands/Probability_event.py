@@ -59,7 +59,7 @@ class Probability_event:
             return "Only the channel owner is allowed to use this command"
         outcomes = self.get_outcomes(setting).split(DELIMITER)
         if len(outcomes) == 1 and outcomes[0] == '':
-            return f"No {self.name} outcomes yet"
+            return f"No {self.display_name} outcomes yet"
         to_remove = outcomes[-1]
         self.set_outcomes(setting, DELIMITER.join(outcomes[:-1]))
         success = self.file_manager.update_setting(setting)
@@ -81,7 +81,7 @@ class Probability_event:
     def report_outcomes(self, setting):
         outcomes = self.get_outcomes(setting).split(DELIMITER)
         if len(outcomes) == 1 and outcomes[0] == '':
-            return f"No {self.name} outcomes have been recorded yet."
+            return f"No {self.display_name} outcomes have been recorded yet."
         return self.outcome_stats(outcomes, setting.name)
 
     def cooldown_active(self, channel_name):
@@ -151,7 +151,7 @@ class Dampe_event(Probability_event):
         return outcome.isdigit() and int(outcome) > 0 and int(outcome) <= 9999
 
     def invalid_outcome_message(self, outcome):
-        return f"{self.name} outcome '{outcome}' is invalid. Please supply an integer greater than zero."
+        return f"{self.display_name} outcome '{outcome}' is invalid. Please supply an integer greater than zero."
 
 
 class Rock_event(Probability_event):
@@ -190,7 +190,7 @@ class Rock_event(Probability_event):
         return outcome in ['yes', 'no']
 
     def invalid_outcome_message(self, outcome):
-        return f"'{outcome}' is not a valid {self.name} outcome, please supply 'yes' or 'no'"
+        return f"'{outcome}' is not a valid {self.display_name} outcome, please supply 'yes' or 'no'"
 
     def transform(self, outcome):
         outcome = outcome.replace(DELIMITER, '').lower()
@@ -233,7 +233,7 @@ class Spinner_event(Probability_event):
         return outcome in ['1', '2', '3']
 
     def invalid_outcome_message(self, outcome):
-        return f"'{outcome}' is not a valid {self.name} outcome, please use a number between 1 and 3."
+        return f"'{outcome}' is not a valid {self.display_name} outcome, please use a number between 1 and 3."
 
     def transform(self, outcome):
         outcome = outcome.replace(DELIMITER, '').lower()
@@ -281,7 +281,7 @@ class Bush_event(Probability_event):
         return outcome.isdigit() and int(outcome) >= 0 and int(outcome) <= 12
 
     def invalid_outcome_message(self, outcome):
-        return f"{self.name} outcome '{outcome}' is invalid. Please supply an integer between 0 and 12."
+        return f"{self.display_name} outcome '{outcome}' is invalid. Please supply an integer between 0 and 12."
 
 
 
