@@ -80,11 +80,11 @@
     "vars": [
       {
         "id": "gq79gxpl",
-        "name": "Any%",
+        "name": "Any% Restricted",
         "nicknames": [
           "Restricted",
           "Any",
-          "Any% Restricted",
+          "Any%",
           "Any Restricted",
           "Restricted Any%",
           "Restricted Any"
@@ -118,9 +118,9 @@
       },
       {
         "id": "4qyyr34q",
-        "name": "100%",
+        "name": "100% Restricted",
         "nicknames": [
-          "100% Restricted",
+          "100%",
           "Restricted 100%",
           "Hundo",
           "Hundo Restricted",
@@ -773,12 +773,36 @@
     ]
   },
   {
-    "name": "Master Sword RTA",
+    "name": "Item RTA",
     "id": "zdnq68qd",
     "nicknames": [
-      "MS RTA",
-      "Master Sword",
-      "Master Sword%"
+      "Items",
+      "Items RTA",
+      "Item RTA (no SRM)"
+    ],
+    "vars": [
+      {
+        "id": "5leod86q",
+        "name": "Master Sword",
+        "nicknames": [
+          "MS",
+          "MS RTA",
+          "Master Sword RTA",
+          "Master Sword%"
+        ]
+      },
+      {
+        "id": "0q56k8v1",
+        "name": "Dampe HP",
+        "nicknames": [
+          "Dampe Heart Piece",
+          "Dampe",
+          "Dampe HP RTA",
+          "Dampe%",
+          "Dampe RTA",
+          "Dampe Heart Piece RTA"
+        ]
+      }
     ]
   },
   {
@@ -793,17 +817,6 @@
         "name": "All Cows",
         "nicknames": [
           "Cows"
-        ]
-      },
-      {
-        "id": "0135z33q",
-        "name": "Dampe HP RTA",
-        "nicknames": [
-          "Dampe HP",
-          "Dampe RTA",
-          "Dampe%",
-          "Dampe Heart Piece RTA",
-          "Dampe Heart Piece"
         ]
       },
       {
