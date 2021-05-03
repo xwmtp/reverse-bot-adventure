@@ -1,8 +1,8 @@
 FROM python:3.8-slim-buster
 
-COPY ./ /etc/reverse-bot-adventure
+RUN pip install requests isodate scipy
 
-RUN pip install requests isodate
+COPY ./ /etc/reverse-bot-adventure
 
 VOLUME ["/etc/reverse-bot-adventure/logs", "/etc/reverse-bot-adventure/Settings"]
 
