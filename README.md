@@ -29,6 +29,15 @@ If you use one of the Racetime commands at least once before the race finishes, 
 * `!goal` to get the goal ('race info') of the current race.
 * `!entrants` to only print the entrants in the race (and their finish times after they finish).
 
+### Stats
+All the following commands all work similarly. If used without argument, they return stats information based on the outcomes you have saved. If used with argument you can save new outcomes.
+* `!dampe` to keep track of Dampe attempts. Use `!dampe 5` to record a fifth try Dampe for example.
+* `!spinner` to keep track of truth spinner tries. Use `!spinner 2` to record a second try truth spinner outcome. Possible outcome values are 1, 2 and 3.
+* `!bushpatch` to keep track of how many bomb drops you got after farming a whole patch of bushes. For example, use `!bushpatch 0` if you didn't get any bombs. To keep it accurate, only use this command if you farmed all 12 bushes in a patch. Also note that flex drops are not being considered.
+* `!rock` to keep track of whether you got a bomb drop out of a rock or not. Use `!rock yes` to record a bomb drop from a rock and `!rock no` if you didn't get one. Flex drops are not being considered.
+
+Anyone in chat can add outcomes for your channel with the commands above. The channel owner can remove the latest addition by using `remove` as an argument (e.g. `!dampe remove`), or remove all saved outcomes by using `clear_all` (e.g. `!rock clear_all`).
+
 ### Help
 * `!help` to see the commands and additional help information.
 * `!commands` to just see the commands you can use.
