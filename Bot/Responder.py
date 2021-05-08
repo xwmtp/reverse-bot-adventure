@@ -3,6 +3,7 @@ from Bot.Commands.Other_commands.General_commands import General_commands
 from Bot.Commands.Probability_commands.Probability_handler import Probability_handler
 from Bot.Commands.Racetime.Racetime_handler import Racetime_handler
 from Bot.Commands.Speedrun_com.SRC_handler import SRC_handler
+from Bot.Config import Configs
 import logging
 
 class Responder:
@@ -23,6 +24,8 @@ class Responder:
                     return handler.handle_message(message.content.lower(), message.sender, message.channel)
                 except Exception as e:
                     logging.error(f"An error occured while handling message {message.content} in channel {message.channel}. Error: {repr(e)}")
+                    if Configs.get("debug_mode"):
+                        raise e
 
     def handle_bot_channel_message(self, message):
         try:

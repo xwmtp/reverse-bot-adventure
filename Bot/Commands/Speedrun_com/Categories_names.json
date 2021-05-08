@@ -14,18 +14,23 @@
     ],
     "vars": [
       {
-        "id": "zqodkp41",
-        "name": "SRM",
-        "nicknames": [
-          "Stale Reference Manipulation"
-        ]
-      },
-      {
-        "id": "0133d8y1",
-        "name": "No SRM",
-        "nicknames": [
-          "NoSRM",
-          "No Stale Reference Manipulation"
+        "id": "jlzw5w7l",
+        "values": [
+          {
+            "id": "zqodkp41",
+            "name": "SRM",
+            "nicknames": [
+              "Stale Reference Manipulation"
+            ]
+          },
+          {
+            "id": "0133d8y1",
+            "name": "No SRM",
+            "nicknames": [
+              "NoSRM",
+              "No Stale Reference Manipulation"
+            ]
+          }
         ]
       }
     ]
@@ -38,18 +43,23 @@
     ],
     "vars": [
       {
-        "id": "rqv3gpyl",
-        "name": "SRM",
-        "nicknames": [
-          "Stale Reference Manipulation"
-        ]
-      },
-      {
-        "id": "5led9961",
-        "name": "No SRM",
-        "nicknames": [
-          "NoSRM",
-          "No Stale Reference Manipulation"
+        "id": "9l7717zl",
+        "values": [
+          {
+            "id": "rqv3gpyl",
+            "name": "SRM",
+            "nicknames": [
+              "Stale Reference Manipulation"
+            ]
+          },
+          {
+            "id": "5led9961",
+            "name": "No SRM",
+            "nicknames": [
+              "NoSRM",
+              "No Stale Reference Manipulation"
+            ]
+          }
         ]
       }
     ]
@@ -79,52 +89,42 @@
     ],
     "vars": [
       {
-        "id": "gq79gxpl",
-        "name": "Any% Restricted",
-        "nicknames": [
-          "Restricted",
-          "Any",
-          "Any%",
-          "Any Restricted",
-          "Restricted Any%",
-          "Restricted Any"
+        "id": "r8r7x20n",
+        "values": [
+          {
+            "id": "8108zmpq",
+            "name": "Any%",
+            "nicknames": [
+              "Any"
+            ]
+          },
+          {
+            "id": "9qjr04ol",
+            "name": "100%",
+            "nicknames": [
+              "100",
+              "Hundo"
+            ]
+          }
         ]
       },
       {
-        "id": "xqk98nd1",
-        "name": "Any% Unrestricted",
-        "nicknames": [
-          "Unrestricted",
-          "Any Unrestricted",
-          "Unrestricted Any%",
-          "Bug Limit",
-          "Any% Bug Limit",
-          "Bug Limit Any%"
-        ]
-      },
-      {
-        "id": "p1259gk1",
-        "name": "100% Unrestricted",
-        "nicknames": [
-          "100% Unrestricted",
-          "Hundo Unrestricted",
-          "Unrestricted 100%",
-          "Unrestricted Hundo",
-          "100% Bug Limit",
-          "Hundo Bug Limit",
-          "Bug Limit 100%",
-          "Bug Limit Hundo"
-        ]
-      },
-      {
-        "id": "4qyyr34q",
-        "name": "100% Restricted",
-        "nicknames": [
-          "100%",
-          "Restricted 100%",
-          "Hundo",
-          "Hundo Restricted",
-          "Restricted Hundo"
+        "id": "7890o58w",
+        "values": [
+          {
+            "id": "gq79gxpl",
+            "name": "Restricted",
+            "nicknames": [
+              "Glitchless"
+            ]
+          },
+          {
+            "id": "xqk98nd1",
+            "name": "Unrestricted",
+            "nicknames": [
+              "Bug Limit"
+            ]
+          }
         ]
       }
     ]
@@ -133,21 +133,27 @@
     "name": "Defeat Ganon",
     "id": "z275w5k0",
     "nicknames": [
+      "Beat Ganon"
     ],
     "vars": [
       {
-        "id": "5q85yy6q",
-        "name": "No SRM",
-        "nicknames": [
-          "NoSRM",
-          "No Stale Reference Manipulation"
-        ]
-      },
-      {
-        "id": "4qy300dl",
-        "name": "SRM",
-        "nicknames": [
-          "Stale Reference Manipulation"
+        "id": "p854r2vl",
+        "values": [
+          {
+            "id": "5q85yy6q",
+            "name": "No SRM",
+            "nicknames": [
+              "NoSRM",
+              "No Stale Reference Manipulation"
+            ]
+          },
+          {
+            "id": "4qy300dl",
+            "name": "SRM",
+            "nicknames": [
+              "Stale Reference Manipulation"
+            ]
+          }
         ]
       }
     ]
@@ -164,18 +170,23 @@
     ],
     "vars": [
       {
-        "id": "0q5kyyvq",
-        "name": "SRM",
-        "nicknames": [
-          "Stale Reference Manipulation"
-        ]
-      },
-      {
-        "id": "4lx3rrgl",
-        "name": "No SRM",
-        "nicknames": [
-          "NoSRM",
-          "No Stale Reference Manipulation"
+        "id": "yn251jgn",
+        "values": [
+          {
+            "id": "0q5kyyvq",
+            "name": "SRM",
+            "nicknames": [
+              "Stale Reference Manipulation"
+            ]
+          },
+          {
+            "id": "4lx3rrgl",
+            "name": "No SRM",
+            "nicknames": [
+              "NoSRM",
+              "No Stale Reference Manipulation"
+            ]
+          }
         ]
       }
     ]
@@ -188,55 +199,60 @@
     ],
     "vars": [
       {
-        "id": "zqomyw41",
-        "name": "Defeat Ganon (5 Items)",
-        "nicknames": [
-          "Defeat Ganon",
-          "Beat Ganon"
-        ]
-      },
-      {
-        "id": "013wveyq",
-        "name": "GSR (15 Items)",
-        "nicknames": [
-          "GSR",
-          "Ganondorf Source Requirement"
-        ]
-      },
-      {
-        "id": "rqv64wyl",
-        "name": "MST (22 Items)",
-        "nicknames": [
-          "MST",
-          "Medallions Stones Trials"
-        ]
-      },
-      {
-        "id": "5le3kz6q",
-        "name": "AD (17 Items)",
-        "nicknames": [
-          "AD",
-          "All Dungeons"
-        ]
-      },
-      {
-        "id": "p12r35vl",
-        "name": "RDO (16 items)",
-        "nicknames": [
-          "RDO",
-          "Reverse Dungeons Order"
-        ]
-      },
-      {
-        "id": "gq79pmnl",
-        "name": "RDO (17 Items)",
-        "nicknames": [
-        ]
-      },
-      {
-        "id": "0q5xozv1",
-        "name": "RDO (21 Items)",
-        "nicknames": [
+        "id": "onvqdmlm",
+        "values": [
+          {
+            "id": "zqomyw41",
+            "name": "Defeat Ganon (5 Items)",
+            "nicknames": [
+              "Defeat Ganon",
+              "Beat Ganon"
+            ]
+          },
+          {
+            "id": "013wveyq",
+            "name": "GSR (15 Items)",
+            "nicknames": [
+              "GSR",
+              "Ganondorf Source Requirement"
+            ]
+          },
+          {
+            "id": "rqv64wyl",
+            "name": "MST (22 Items)",
+            "nicknames": [
+              "MST",
+              "Medallions Stones Trials"
+            ]
+          },
+          {
+            "id": "5le3kz6q",
+            "name": "AD (17 Items)",
+            "nicknames": [
+              "AD",
+              "All Dungeons"
+            ]
+          },
+          {
+            "id": "p12r35vl",
+            "name": "RDO (16 items)",
+            "nicknames": [
+              "RDO",
+              "Reverse Dungeons Order"
+            ]
+          },
+          {
+            "id": "gq79pmnl",
+            "name": "RDO (17 Items)",
+            "nicknames": [
+            ]
+          },
+          {
+            "id": "0q5xozv1",
+            "name": "RDO (21 Items)",
+            "nicknames": [
+            ]
+          }
         ]
       }
     ]
@@ -270,61 +286,66 @@
     ],
     "vars": [
       {
-        "id": "5q82gkkq",
-        "name": "No SRM",
-        "nicknames": [
-          "NoSRM",
-          "No Stale Reference Manipulation"
-        ]
-      },
-      {
-        "id": "4qy5nz71",
-        "name": "NSR",
-        "nicknames": [
-          "No Source Requirement",
-          "No Source Requirements"
-        ]
-      },
-      {
-        "id": "rqvd335q",
-        "name": "Glitchless",
-        "nicknames": [
-          "Glitch less",
-          "Glitchless Any%",
-          "Any% Glitchless",
-          "Glitchless Restricted",
-          "Glitchless Any% Restricted",
-          "Restricted Glitchless",
-          "Restricted Glitchless Any%"
-        ]
-      },
-      {
-        "id": "mlnd58d1",
-        "name": "Glitchless Unrestricted",
-        "nicknames": [
-          "Glitchless Unrestricted",
-          "Bug Limit",
-          "Glitchless Bug Limit",
-          "Glitchless Any% Bug Limit",
-          "Glitchless Any% Unrestricted",
-          "Glitchless Unrestricted Any%",
-          "Unrestricted Glitchless",
-          "Unrestricted Glitchless Any%"
-        ]
-      },
-      {
-        "id": "jq6y2571",
-        "name": "as Adult",
-        "nicknames": [
-          "Adult",
-          "as Adult Link"
-        ]
-      },
-      {
-        "id": "z19g2z8l",
-        "name": "SRM",
-        "nicknames": [
-          "Stale Reference Manipulation"
+        "id": "6nj99684",
+        "values": [
+          {
+            "id": "5q82gkkq",
+            "name": "No SRM",
+            "nicknames": [
+              "NoSRM",
+              "No Stale Reference Manipulation"
+            ]
+          },
+          {
+            "id": "4qy5nz71",
+            "name": "NSR",
+            "nicknames": [
+              "No Source Requirement",
+              "No Source Requirements"
+            ]
+          },
+          {
+            "id": "rqvd335q",
+            "name": "Glitchless",
+            "nicknames": [
+              "Glitch less",
+              "Glitchless Any%",
+              "Any% Glitchless",
+              "Glitchless Restricted",
+              "Glitchless Any% Restricted",
+              "Restricted Glitchless",
+              "Restricted Glitchless Any%"
+            ]
+          },
+          {
+            "id": "mlnd58d1",
+            "name": "Glitchless Unrestricted",
+            "nicknames": [
+              "Glitchless Unrestricted",
+              "Bug Limit",
+              "Glitchless Bug Limit",
+              "Glitchless Any% Bug Limit",
+              "Glitchless Any% Unrestricted",
+              "Glitchless Unrestricted Any%",
+              "Unrestricted Glitchless",
+              "Unrestricted Glitchless Any%"
+            ]
+          },
+          {
+            "id": "jq6y2571",
+            "name": "as Adult",
+            "nicknames": [
+              "Adult",
+              "as Adult Link"
+            ]
+          },
+          {
+            "id": "z19g2z8l",
+            "name": "SRM",
+            "nicknames": [
+              "Stale Reference Manipulation"
+            ]
+          }
         ]
       }
     ]
@@ -338,18 +359,23 @@
     ],
     "vars": [
       {
-        "id": "rqvwvm61",
-        "name": "No SRM",
-        "nicknames": [
-          "NoSRM",
-          "No Stale Reference Manipulation"
-        ]
-      },
-      {
-        "id": "5leg2ek1",
-        "name": "No PFC",
-        "nicknames": [
-          "No Partial Function Calls"
+        "id": "p854djvl",
+        "values": [
+          {
+            "id": "rqvwvm61",
+            "name": "No SRM",
+            "nicknames": [
+              "NoSRM",
+              "No Stale Reference Manipulation"
+            ]
+          },
+          {
+            "id": "5leg2ek1",
+            "name": "No PFC",
+            "nicknames": [
+              "No Partial Function Calls"
+            ]
+          }
         ]
       }
     ]
@@ -404,29 +430,34 @@
     ],
     "vars": [
       {
-        "id": "8100xv51",
-        "name": "No SRM",
-        "nicknames": [
-          "NoSRM",
-          "No Stale Reference Manipulation"
-        ]
-      },
-      {
-        "id": "z19gr5jl",
-        "name": "SRM",
-        "nicknames": [
-          "No Stale Reference Manipulation"
-        ]
-      },
-      {
-        "id": "9qjwg7g1",
-        "name": "Glitchless Unrestricted",
-        "nicknames": [
-          "Glitchless",
-          "Unrestricted",
-          "Unrestricted Glitchless",
-          "Bug Limit",
-          "Glitch less"
+        "id": "kn0dddl3",
+        "values": [
+          {
+            "id": "8100xv51",
+            "name": "No SRM",
+            "nicknames": [
+              "NoSRM",
+              "No Stale Reference Manipulation"
+            ]
+          },
+          {
+            "id": "z19gr5jl",
+            "name": "SRM",
+            "nicknames": [
+              "No Stale Reference Manipulation"
+            ]
+          },
+          {
+            "id": "9qjwg7g1",
+            "name": "Glitchless Unrestricted",
+            "nicknames": [
+              "Glitchless",
+              "Unrestricted",
+              "Unrestricted Glitchless",
+              "Bug Limit",
+              "Glitch less"
+            ]
+          }
         ]
       }
     ]
@@ -439,27 +470,33 @@
     ],
     "vars": [
       {
-        "id": "zqom5x21",
-        "name": "No RBA",
-        "nicknames": [
-          "Source",
-          "No Reverse Bottle Adventure"
-        ]
-      },
-      {
-        "id": "013w293q",
-        "name": "RBA",
-        "nicknames": [
-          "Normal",
-          "Reverse Bottle Adventure",
-          "NSR"
-        ]
-      },
-      {
-        "id": "rqv6mvwl",
-        "name": "Reverse Order",
-        "nicknames": [
-          "Reversed"
+        "id": "onvqerlm",
+        "values": [
+          {
+            "id": "zqom5x21",
+            "name": "No RBA",
+            "nicknames": [
+              "Source",
+              "No Reverse Bottle Adventure"
+            ]
+          },
+          {
+            "id": "013w293q",
+            "name": "RBA",
+            "nicknames": [
+              "Normal",
+              "Reverse Bottle Adventure",
+              "NSR"
+            ]
+          },
+          {
+            "id": "rqv6mvwl",
+            "name": "Reverse Order",
+            "nicknames": [
+              "Reversed",
+              "Reverse"
+            ]
+          }
         ]
       }
     ]
@@ -475,28 +512,33 @@
     ],
     "vars": [
       {
-        "id": "z19m05kl",
-        "name": "Defeat Ganon - No SRM",
-        "nicknames": [
-          "Any%",
-          "Defeat Ganon",
-          "Defeat Ganon No SRM",
-          "Defeat Ganon NoSRM",
-          "Defeat Ganon No Source Requirement",
-          "Beat Ganon"
-        ]
-      },
-      {
-        "id": "814yrkj1",
-        "name": "Glitchless Any%",
-        "nicknames": [
-          "Glitchless",
-          "Glitch less",
-          "Any% Glitchless",
-          "Glitchless Restricted",
-          "Glitchless Any% Restricted",
-          "Restricted Glitchless",
-          "Restricted Glitchless Any%"
+        "id": "ylqm7dmn",
+        "values": [
+          {
+            "id": "z19m05kl",
+            "name": "Defeat Ganon - No SRM",
+            "nicknames": [
+              "Any%",
+              "Defeat Ganon",
+              "Defeat Ganon No SRM",
+              "Defeat Ganon NoSRM",
+              "Defeat Ganon No Source Requirement",
+              "Beat Ganon"
+            ]
+          },
+          {
+            "id": "814yrkj1",
+            "name": "Glitchless Any%",
+            "nicknames": [
+              "Glitchless",
+              "Glitch less",
+              "Any% Glitchless",
+              "Glitchless Restricted",
+              "Glitchless Any% Restricted",
+              "Restricted Glitchless",
+              "Restricted Glitchless Any%"
+            ]
+          }
         ]
       }
     ]
@@ -513,40 +555,45 @@
     ],
     "vars": [
       {
-        "id": "jqzv4w8l",
-        "name": "Phantom Ganon",
-        "nicknames": [
-          "PG"
-        ]
-      },
-      {
-        "id": "5lm8do4q",
-        "name": "Volvagia",
-        "nicknames": [
-          "Volv"
-        ]
-      },
-      {
-        "id": "81wen451",
-        "name": "Morpha",
-        "nicknames": [
-        ]
-      },
-      {
-        "id": "klrj7dmq",
-        "name": "Bongo Bongo",
-        "nicknames": [
-          "Bongo"
-        ]
-      },
-      {
-        "id": "xqk450nl",
-        "name": "Max Bosses",
-        "nicknames": [
-          "All Bosses",
-          "Maximal Bosses",
-          "Bosses Max",
-          "All"
+        "id": "ql6ooxl9",
+        "values": [
+          {
+            "id": "jqzv4w8l",
+            "name": "Phantom Ganon",
+            "nicknames": [
+              "PG"
+            ]
+          },
+          {
+            "id": "5lm8do4q",
+            "name": "Volvagia",
+            "nicknames": [
+              "Volv"
+            ]
+          },
+          {
+            "id": "81wen451",
+            "name": "Morpha",
+            "nicknames": [
+            ]
+          },
+          {
+            "id": "klrj7dmq",
+            "name": "Bongo Bongo",
+            "nicknames": [
+              "Bongo"
+            ]
+          },
+          {
+            "id": "xqk450nl",
+            "name": "Max Bosses",
+            "nicknames": [
+              "All Bosses",
+              "Maximal Bosses",
+              "Bosses Max",
+              "All"
+            ]
+          }
         ]
       }
     ]
@@ -579,27 +626,32 @@
     ],
     "vars": [
       {
-        "id": "mlny3nj1",
-        "name": "11 Presses",
-        "nicknames": [
-          "11 Press",
-          "11"
-        ]
-      },
-      {
-        "id": "8105782q",
-        "name": "12 Presses",
-        "nicknames": [
-          "12 Press",
-          "12"
-        ]
-      },
-      {
-        "id": "9qjzdr31",
-        "name": "13 Presses",
-        "nicknames": [
-          "13 Press",
-          "13"
+        "id": "38doz4zl",
+        "values": [
+          {
+            "id": "mlny3nj1",
+            "name": "11 Presses",
+            "nicknames": [
+              "11 Press",
+              "11"
+            ]
+          },
+          {
+            "id": "8105782q",
+            "name": "12 Presses",
+            "nicknames": [
+              "12 Press",
+              "12"
+            ]
+          },
+          {
+            "id": "9qjzdr31",
+            "name": "13 Presses",
+            "nicknames": [
+              "13 Press",
+              "13"
+            ]
+          }
         ]
       }
     ]
@@ -630,29 +682,34 @@
     ],
     "vars": [
       {
-        "id": "gq7rkkrl",
-        "name": "No SRM",
-        "nicknames": [
-          "NoSRM",
-          "No Stale Reference Manipulation"
-        ]
-      },
-      {
-        "id": "013533yq",
-        "name": "No SRM (2018-08-14)",
-        "nicknames": [
-        ]
-      },
-      {
-        "id": "jqzxkkk1",
-        "name": "No SRM (2017-09-06)",
-        "nicknames": [
-        ]
-      },
-      {
-        "id": "klrynnwq",
-        "name": "No SRM (2017-04-17)",
-        "nicknames": [
+        "id": "gnxrk5jn",
+        "values": [
+          {
+            "id": "gq7rkkrl",
+            "name": "No SRM",
+            "nicknames": [
+              "NoSRM",
+              "No Stale Reference Manipulation"
+            ]
+          },
+          {
+            "id": "013533yq",
+            "name": "No SRM (2018-08-14)",
+            "nicknames": [
+            ]
+          },
+          {
+            "id": "jqzxkkk1",
+            "name": "No SRM (2017-09-06)",
+            "nicknames": [
+            ]
+          },
+          {
+            "id": "klrynnwq",
+            "name": "No SRM (2017-04-17)",
+            "nicknames": [
+            ]
+          }
         ]
       }
     ]
@@ -666,24 +723,29 @@
     ],
     "vars": [
       {
-        "id": "z19z9nyq",
-        "name": "Any% - No SRM",
-        "nicknames": [
-          "Any% No SRM",
-          "No SRM",
-          "NoSRM",
-          "Normal"
-        ]
-      },
-      {
-        "id": "p122w7d1",
-        "name": "All Dungeons - No SRM",
-        "nicknames": [
-          "AD No SRM",
-          "AD NoSRM",
-          "AD - No SRM",
-          "All Dungeons",
-          "AD"
+        "id": "ylpv9xdl",
+        "values": [
+          {
+            "id": "z19z9nyq",
+            "name": "Any% - No SRM",
+            "nicknames": [
+              "Any% No SRM",
+              "No SRM",
+              "NoSRM",
+              "Normal"
+            ]
+          },
+          {
+            "id": "p122w7d1",
+            "name": "All Dungeons - No SRM",
+            "nicknames": [
+              "AD No SRM",
+              "AD NoSRM",
+              "AD - No SRM",
+              "All Dungeons",
+              "AD"
+            ]
+          }
         ]
       }
     ]
@@ -708,25 +770,30 @@
     ],
     "vars": [
       {
-        "id": "81p4xmv1",
-        "name": "GSR",
-        "nicknames": [
-          "Ganondorf Source Requirement"
-        ]
-      },
-      {
-        "id": "xqk9zyd1",
-        "name": "All Dungeons",
-        "nicknames": [
-          "AD"
-        ]
-      },
-      {
-        "id": "0q5x0mn1",
-        "name": "Max% (270 Items)",
-        "nicknames": [
-          "Max%",
-          "Max"
+        "id": "0nw4708q",
+        "values": [
+          {
+            "id": "81p4xmv1",
+            "name": "GSR",
+            "nicknames": [
+              "Ganondorf Source Requirement"
+            ]
+          },
+          {
+            "id": "xqk9zyd1",
+            "name": "All Dungeons",
+            "nicknames": [
+              "AD"
+            ]
+          },
+          {
+            "id": "0q5x0mn1",
+            "name": "Max% (270 Items)",
+            "nicknames": [
+              "Max%",
+              "Max"
+            ]
+          }
         ]
       }
     ]
@@ -742,14 +809,19 @@
     "name": "No OoB",
     "id": "zd36xx8d",
     "nicknames": [
-      "No Out Of Bounds"
+      "No Out of Bounds"
     ],
     "vars": [
       {
-        "id": "zqoy8wx1",
-        "name": "AD",
-        "nicknames": [
-          "All Dungeons"
+        "id": "38dowoel",
+        "values": [
+          {
+            "id": "zqoy8wx1",
+            "name": "AD",
+            "nicknames": [
+              "All Dungeons"
+            ]
+          }
         ]
       }
     ]
@@ -776,31 +848,37 @@
     "name": "Item RTA",
     "id": "zdnq68qd",
     "nicknames": [
+      "Item",
       "Items",
       "Items RTA",
       "Item RTA (no SRM)"
     ],
     "vars": [
       {
-        "id": "5leod86q",
-        "name": "Master Sword",
-        "nicknames": [
-          "MS",
-          "MS RTA",
-          "Master Sword RTA",
-          "Master Sword%"
-        ]
-      },
-      {
-        "id": "0q56k8v1",
-        "name": "Dampe HP",
-        "nicknames": [
-          "Dampe Heart Piece",
-          "Dampe",
-          "Dampe HP RTA",
-          "Dampe%",
-          "Dampe RTA",
-          "Dampe Heart Piece RTA"
+        "id": "wlew37el",
+        "values": [
+          {
+            "id": "5leod86q",
+            "name": "Master Sword",
+            "nicknames": [
+              "MS",
+              "MS RTA",
+              "Master Sword RTA",
+              "Master Sword%"
+            ]
+          },
+          {
+            "id": "0q56k8v1",
+            "name": "Dampe HP",
+            "nicknames": [
+              "Dampe Heart Piece",
+              "Dampe",
+              "Dampe HP RTA",
+              "Dampe%",
+              "Dampe RTA",
+              "Dampe Heart Piece RTA"
+            ]
+          }
         ]
       }
     ]
@@ -813,101 +891,106 @@
     ],
     "vars": [
       {
-        "id": "5lempgz1",
-        "name": "All Cows",
-        "nicknames": [
-          "Cows"
-        ]
-      },
-      {
-        "id": "rqvej3w1",
-        "name": "Mweep%",
-        "nicknames": [
-          "Mweep"
-        ]
-      },
-      {
-        "id": "0q5gdknl",
-        "name": "Dank%",
-        "nicknames": [
-          "Dank"
-        ]
-      },
-      {
-        "id": "5lempdz1",
-        "name": "Loach%",
-        "nicknames": [
-          "Loach"
-        ]
-      },
-      {
-        "id": "jqzxokm1",
-        "name": "Go Home and Die%",
-        "nicknames": [
-          "Go Home and Die"
-        ]
-      },
-      {
-        "id": "5q8dn7kl",
-        "name": "JOTWAD",
-        "nicknames": [
-          "Jump Off The Watchtower and Die",
-          "Jump Off The Watch Tower and Die"
-        ]
-      },
-      {
-        "id": "p12drydq",
-        "name": "JOTWAL",
-        "nicknames": [
-          "Jump Off The Watchtower and Live",
-          "Jump Off The Watch Tower and Live"
-        ]
-      },
-      {
-        "id": "4qyjke7q",
-        "name": "4 Bae RTA",
-        "nicknames": [
-          "4 Bae",
-          "4 Baes",
-          "4 Baes RTA",
-          "All Baes",
-          "Four Bae RTA"
-        ]
-      },
-      {
-        "id": "9qjxpygl",
-        "name": "Blue%",
-        "nicknames": [
-          "Blue"
-        ]
-      },
-      {
-        "id": "21d3p7jq",
-        "name": "KFC%",
-        "nicknames": [
-          "KFC"
-        ]
-      },
-      {
-        "id": "xqkmp7yl",
-        "name": "Go Camp and Die%",
-        "nicknames": [
-          "Go Camp and Die"
-        ]
-      },
-      {
-        "id": "810w2e5q",
-        "name": "Cucco%",
-        "nicknames": [
-          "Cuccos",
-          "Cucco"
-        ]
-      },
-      {
-        "id": "klry8n2q",
-        "name": "Spicy%",
-        "nicknames": [
-          "Spicy"
+        "id": "38dj3648",
+        "values": [
+          {
+            "id": "5lempgz1",
+            "name": "All Cows",
+            "nicknames": [
+              "Cows"
+            ]
+          },
+          {
+            "id": "rqvej3w1",
+            "name": "Mweep%",
+            "nicknames": [
+              "Mweep"
+            ]
+          },
+          {
+            "id": "0q5gdknl",
+            "name": "Dank%",
+            "nicknames": [
+              "Dank"
+            ]
+          },
+          {
+            "id": "5lempdz1",
+            "name": "Loach%",
+            "nicknames": [
+              "Loach"
+            ]
+          },
+          {
+            "id": "jqzxokm1",
+            "name": "Go Home and Die%",
+            "nicknames": [
+              "Go Home and Die"
+            ]
+          },
+          {
+            "id": "5q8dn7kl",
+            "name": "JOTWAD",
+            "nicknames": [
+              "Jump Off The Watchtower and Die",
+              "Jump Off The Watch Tower and Die"
+            ]
+          },
+          {
+            "id": "p12drydq",
+            "name": "JOTWAL",
+            "nicknames": [
+              "Jump Off The Watchtower and Live",
+              "Jump Off The Watch Tower and Live"
+            ]
+          },
+          {
+            "id": "4qyjke7q",
+            "name": "4 Bae RTA",
+            "nicknames": [
+              "4 Bae",
+              "4 Baes",
+              "4 Baes RTA",
+              "All Baes",
+              "Four Bae RTA"
+            ]
+          },
+          {
+            "id": "9qjxpygl",
+            "name": "Blue%",
+            "nicknames": [
+              "Blue"
+            ]
+          },
+          {
+            "id": "21d3p7jq",
+            "name": "KFC%",
+            "nicknames": [
+              "KFC"
+            ]
+          },
+          {
+            "id": "xqkmp7yl",
+            "name": "Go Camp and Die%",
+            "nicknames": [
+              "Go Camp and Die"
+            ]
+          },
+          {
+            "id": "810w2e5q",
+            "name": "Cucco%",
+            "nicknames": [
+              "Cucco",
+              "Cuccos"
+            ]
+          },
+          {
+            "id": "klry8n2q",
+            "name": "Spicy%",
+            "nicknames": [
+              "Spicy"
+            ]
+          }
         ]
       }
     ]

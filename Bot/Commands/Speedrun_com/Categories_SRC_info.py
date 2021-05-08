@@ -34,28 +34,47 @@ def _extract_src_variables_info(vars_data):
     variables = []
     if not 'data' in vars_data or vars_data['data'] == []:
         return variables
-    vars_data = vars_data['data'][0]
-    default_var_id = vars_data['values']['default']
-    for var_id, var_info in vars_data['values']['values'].items():
-        variables.append(
-            Variable(
-                name=var_info['label'],
-                id=var_id,
-                group_id=vars_data['id'],
-                default=var_id == default_var_id
-            ))
+    for var_data in vars_data['data']:
+        default_value_id = var_data['values']['default']
+        values = _parse_to_value(var_data['values']['values'], var_data["id"])
+        variables.append(Variable(var_data['name'], var_data['id'], values, default_value_id))
     return variables
 
+def _parse_to_value(values_data, variable_id):
+    values = []
+    for value_id, value_data in values_data.items():
+        values.append(
+            Value(
+                name=value_data['label'],
+                id=value_id,
+                variable_id=variable_id
+            ))
+    return values
+
+
+
+
+@dataclass
+class Value:
+    name : str
+    id : str
+    variable_id : str
+
+    def to_dict(self):
+        return {"id" : self.id, "name" : self.name, "nicknames" : [""]}
 
 @dataclass
 class Variable:
     name: str
     id: str
-    group_id: str
-    default: bool
+    values: List[Value]
+    default_value_id: str
+
+    def get_default_value(self):
+        return next(value for value in self.values if value.id == self.default_value_id)
 
     def to_dict(self):
-        return {"id" : self.id, "name" : self.name, "nicknames" : [""]}
+        return {"id" : self.id, "values" : [value.to_dict() for value in self.values]}
 
 
 @dataclass

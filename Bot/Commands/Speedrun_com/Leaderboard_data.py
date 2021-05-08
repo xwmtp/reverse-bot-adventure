@@ -3,10 +3,10 @@ from dataclasses import dataclass
 from Bot.Utils import make_request, seconds_to_hhmmss
 
 
-def download_leaderboard(category, var, top=None):
+def download_leaderboard(category, values, top=None):
     parameters = []
-    if var:
-        parameters.append(f"var-{var.group_id}={var.id}")
+    for value in values:
+        parameters.append(f"var-{value.variable_id}={value.id}")
     if top:
         parameters.append(f'top={top}')
     parameters.append("embed=players")

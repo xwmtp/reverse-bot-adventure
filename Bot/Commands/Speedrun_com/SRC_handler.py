@@ -42,12 +42,13 @@ class SRC_handler(Message_handler):
     def pb(self, matched_category, channel):
         if not matched_category:
             return
-        category, var = matched_category
-        leaderboard = download_leaderboard(category, var)
+        category, values = matched_category
+        leaderboard = download_leaderboard(category, values)
         streamer_src = self.lookup_src_name(channel)
         pb_run = leaderboard.get_pb(streamer_src)
 
-        category_name = f"{category.name} - {var.name}" if var else category.name
+        values_str = ', '.join([val.name for val in values])
+        category_name = f"{category.name} - {values_str}" if values_str else category.name
         if pb_run:
             return f"{pb_run.player}'s PB for OoT {category_name} is {pb_run.time} ({make_ordinal(pb_run.rank)} place)."
         else:
@@ -56,11 +57,12 @@ class SRC_handler(Message_handler):
     def wr(self, matched_category):
         if not matched_category:
             return
-        category, var = matched_category
-        leaderboard = download_leaderboard(category, var, top=1)
+        category, values = matched_category
+        leaderboard = download_leaderboard(category, values, top=1)
         wr_run = leaderboard.get_run(rank=1)
 
-        category_name = f"{category.name} - {var.name}" if var else category.name
+        values_str = ', '.join([val.name for val in values])
+        category_name = f"{category.name} - {values_str}" if values_str else category.name
         if wr_run:
             return f"The current WR for OoT {category_name} is {wr_run.time} by {wr_run.player}."
         else:
