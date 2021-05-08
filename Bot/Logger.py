@@ -23,5 +23,8 @@ def initalize_logger():
     # file handler (errors)
     add_logging_handler(logging.FileHandler("logs/ERROR.log", "a"), logging.WARNING)
 
+def update_streamhandler_level(new_level):
+    logging.getLogger().handlers[0].setLevel(new_level)
+
 
 

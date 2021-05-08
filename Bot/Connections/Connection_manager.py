@@ -3,6 +3,7 @@ from Bot.Connections.Message import convert_irc_message
 from Bot.Connections.IRC_connection import IRC_connection
 from Bot.Responder import Responder
 from Bot.Config import Configs
+from Bot.Logger import update_streamhandler_level
 import socket
 import logging
 import time
@@ -188,6 +189,8 @@ class Reconnecter:
 
             logging.critical(f"Attempting to reconnect (attempt {self.reconnect_attempts})...")
             self.connection.reset_connection()
+            update_streamhandler_level(logging.DEBUG)
+
 
             if self.connection.is_connected():
                 try:
