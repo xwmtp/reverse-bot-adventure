@@ -1,4 +1,5 @@
 from Bot.Manage_settings.File_manager_factory import get_probabilities_settings_manager
+from Bot.Utils import make_request
 from scipy import stats
 import math
 import time
@@ -31,11 +32,15 @@ class Probability_event:
             return self.reset_all(probability_setting, sender)
         if args[0].lower() in ['del', 'delete', 'remove', 'undo']:
             return self.remove_outcome(probability_setting, sender)
-        return self.add_outcome(probability_setting, args[0].lower())
+        return self.add_outcome(probability_setting, args[0].lower(), sender)
 
-    def add_outcome(self, setting, outcome):
+    def add_outcome(self, setting, outcome, sender):
+        if sender.lower() != setting.name.lower() and not is_live(setting.name.lower()):
+            return "Only the channel owner can add outcomes when the stream is not live"
+
         if self.cooldown_active(setting.name.lower()):
             return f"Cooldown of {self.cooldown_seconds}s is active."
+
         transformed_outcome = self.transform(outcome)
         if not self.is_valid(transformed_outcome):
             return self.invalid_outcome_message(outcome)
@@ -291,3 +296,8 @@ def custom_round(number, decimals=2):
         return round(number, decimals)
     dist = int(math.log10(abs(number)))
     return round(number, abs(dist) + decimals)
+
+def is_live(channel):
+    uptime = make_request(f"https://decapi.me/twitch/uptime/{channel}", text_only=True)
+    return 'offline' not in uptime
+
