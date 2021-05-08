@@ -36,7 +36,7 @@ All the following commands all work similarly. If used without argument, they re
 * `!bushpatch` to keep track of how many bomb drops you got after farming a whole patch of bushes. For example, use `!bushpatch 0` if you didn't get any bombs. To keep it accurate, only use this command if you farmed all 12 bushes in a patch. Also note that flex drops are not being considered.
 * `!rock` to keep track of whether you got a bomb drop out of a rock or not. Use `!rock yes` to record a bomb drop from a rock and `!rock no` if you didn't get one. Flex drops are not being considered.
 
-Anyone in chat can add outcomes for your channel with the commands above. The channel owner can remove the latest addition by using `remove` as an argument (e.g. `!dampe remove`), or remove all saved outcomes by using `clear_all` (e.g. `!rock clear_all`).
+When a stream is live, anyone in chat can add outcomes with the commands above. When the stream is offline only the channel owner can add outcomes. The channel owner is the only one that can remove outcomes: remove the latest addition by using `remove` as an argument (e.g. `!dampe remove`), or remove all saved outcomes by using `clear_all` (e.g. `!rock clear_all`).
 
 ### Help
 * `!help` to see the commands and additional help information.
