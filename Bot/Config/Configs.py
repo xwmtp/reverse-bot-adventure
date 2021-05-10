@@ -34,8 +34,8 @@ class Config:
                 logging.debug(settings)
                 return settings
             # parse to boolean
-            if string.lower() in ['yes', 'no']:
-                return string.lower() == 'yes'
+            if string.lower() in ['yes', 'true', 'no', 'false']:
+                return string.lower() == 'yes' or string.lower() == 'true'
             # parse to logging level
             if string.lower() in ['debug', 'info', 'warning', 'error']:
                 return getattr(logging, string.upper())

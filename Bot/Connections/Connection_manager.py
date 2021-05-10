@@ -100,7 +100,7 @@ class Connection_manager:
         for channel in channel_names:
             self.connection.join_channel(channel)
             self.process_welcome_messages()
-        if Configs.get("post_welcome_message").lower() == "true" and send_welcome_message:
+        if Configs.get("post_welcome_message") and send_welcome_message:
             for channel in channel_names:
                 self.send_message("Ready to put Bottle on B! Use !help to see commands.", channel)
 
