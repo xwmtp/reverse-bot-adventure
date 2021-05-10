@@ -19,11 +19,14 @@ class Categories_matcher:
 
     def match(self, string):
         for category_names in self.categories_nicknames:
-            match = self.match_on_full_category(string, category_names)
+            if "collection" in category_names:
+                print(category_names["name"])
+                match = self.match_on_category_or_subcategory(string, category_names)
+            else:
+                match = self.match_on_full_category(string, category_names)
             if match:
                 return self.match_found_category_with_src_info(match)
 
-    # todo less hacky solution for memes
     def match_on_full_category(self, string, category):
         string = transform_query(string)
         string_remainder = self.match_on_category(string, category)
@@ -36,6 +39,22 @@ class Categories_matcher:
 
         matched_values = self.match_on_variables(string_remainder, category["vars"])
         return Category_match(category["id"], category["name"], matched_values)
+
+    def match_on_category_or_subcategory(self, string, category):
+        string = transform_query(string)
+        string_remainder = self.match_on_category(string, category)
+
+        if string_remainder is None:
+            if "vars" not in category:
+                return
+            string_remainder = string
+
+        if "vars" not in category:
+            return Category_match(category["id"], category["name"])
+
+        matched_values = self.match_on_variables(string_remainder, category["vars"])
+        if len(matched_values) > 0:
+            return Category_match(category["id"], category["name"], matched_values)
 
     def match_on_category(self, string, category):
         string = transform_query(string)

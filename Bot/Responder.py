@@ -21,7 +21,8 @@ class Responder:
         for handler in self.handlers:
             if handler.triggered(message.content.split()[0]):
                 try:
-                    return handler.handle_message(message.content.lower(), message.sender, message.channel)
+                    debug_msg = "[debug] " if Configs.get("debug_mode") else ""
+                    return debug_msg + handler.handle_message(message.content.lower(), message.sender, message.channel)
                 except Exception as e:
                     logging.error(f"An error occured while handling message {message.content} in channel {message.channel}. Error: {repr(e)}")
                     if Configs.get("debug_mode"):

@@ -846,6 +846,7 @@
   {
     "name": "Item RTA",
     "id": "zdnq68qd",
+    "collection": "true",
     "nicknames": [
       "Item",
       "Items",
@@ -885,6 +886,7 @@
   {
     "name": "Memes",
     "id": "zd3w0gyk",
+    "collection": "true",
     "nicknames": [
       "Meme"
     ],
