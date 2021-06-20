@@ -23,8 +23,9 @@ def initalize_logger():
     # file handler (errors)
     add_logging_handler(logging.FileHandler("logs/ERROR.log", "a"), logging.WARNING)
 
-def update_streamhandler_level(new_level):
-    logging.getLogger().handlers[0].setLevel(new_level)
-
-
-
+def update_logging_levels(new_level):
+    try:
+        logging.getLogger().handlers[0].setLevel(new_level)
+        logging.getLogger().handlers[1].setLevel(new_level)
+    except Exception as e:
+        logging.error(f"Could not update logging level: {repr(e)}")
