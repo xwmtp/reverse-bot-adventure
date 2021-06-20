@@ -64,7 +64,7 @@ class Connection_manager:
             line = self.data_reader.get_next_line()
             if line:
                 message = self.connection.to_message(line)
-                message.log(level='info')
+                message.log(level='debug')
                 if message.is_private_message() and not message.is_bot_message():
                     return convert_irc_message(message)
                 if message.is_ping():
@@ -75,7 +75,7 @@ class Connection_manager:
                     message.log(level='warning')
 
         except socket.timeout:
-            logging.info(f"Socket time out after {self.connection.TIMEOUT} seconds.")
+            logging.debug(f"Socket time out after {self.connection.TIMEOUT} seconds.")
             self.reconnecter.handle_timeout()
 
         except socket.error as e:
@@ -204,10 +204,10 @@ class Reconnecter:
                 logging.critical("Reconnection failed, socket is None.")
 
     def handle_pong(self):
-        logging.info("Received PONG.")
+        logging.debug("Received PONG.")
         self.awaiting_pong = False
         if self.validate_reconnect:
-            logging.critical('Reconnect successful, received PONG.')
+            logging.warning('Reconnect successful, received PONG.')
             self.validate_reconnect = False
 
     def handle_timeout(self):
@@ -219,7 +219,7 @@ class Reconnecter:
             self.send_ping()
 
     def send_ping(self, msg = 'validating_connection'):
-        logging.info(f"Sent validation ping '{msg}'.")
+        logging.debug(f"Sent validation ping '{msg}'.")
         self.last_ping_sent = time.time()
         self.connection.send_ping(msg)
         self.awaiting_pong = True

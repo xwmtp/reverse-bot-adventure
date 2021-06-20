@@ -21,6 +21,7 @@ class Responder:
         for handler in self.handlers:
             if handler.triggered(message.content.split()[0]):
                 try:
+                    logging.info(f"Responding to message from {message.sender} in #{message.channel}: {message.content}")
                     debug_msg = "[debug] " if Configs.get("debug_mode") else ""
                     return debug_msg + handler.handle_message(message.content.lower(), message.sender, message.channel)
                 except Exception as e:

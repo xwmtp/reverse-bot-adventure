@@ -111,7 +111,7 @@ class Bot_settings_handler(Message_handler):
         setting = self.file_manager.get_setting(sender)
         if not setting:
             return {"response": f"You haven't added me yet to your channel! Use !add first."}
-        setting.src_name = racetime_name
+        setting.racetime_name = racetime_name
         success = self.file_manager.update_setting(setting)
         if success:
             return {"response": f"Your Racetime.gg user name has been set to '{format_name(racetime_name)}'"}

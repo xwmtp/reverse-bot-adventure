@@ -10,7 +10,7 @@ class IRC_connection:
     def __init__(self, bot_name, bot_oauth):
         self.HOST = "irc.twitch.tv"
         self.PORT = 6667
-        self.TIMEOUT = 20
+        self.TIMEOUT = 60
         self.NICK = bot_name
         self.PASS = bot_oauth
         self.socket = socket.socket()
@@ -134,8 +134,8 @@ class IRC_message:
         except ValueError:
             return False
 
-    def log(self, level='info'):
+    def log(self, level='debug'):
         if level=='warning:':
             logging.warning(f"Message: {self.irc_message}")
         else:
-            logging.info(f"Message: {self.irc_message}")
+            logging.debug(f"Message: {self.irc_message}")

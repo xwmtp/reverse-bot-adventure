@@ -6,6 +6,7 @@ import os
 
 
 if __name__ == '__main__':
+    print("Welcome to Reverse Bot Adventure")
     first_time_boot = not os.path.exists(f'Settings/Settings.ini')
     if first_time_boot:
         Configs.create_settings()
