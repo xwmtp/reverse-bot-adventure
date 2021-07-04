@@ -8,6 +8,7 @@ import os
 
 def make_request(url, text_only=False, attempts=5):
     status=""
+    logging.debug(f"Request: {url}")
     for i in range(attempts):
         if i > 0:
             logging.info(f"Connecting failed (status {status}), trying again... attempt ({i})")
@@ -22,6 +23,8 @@ def make_request(url, text_only=False, attempts=5):
                 return response.json()
         if status == 404:
             return
+
+        time.sleep(1)
 
     logging.critical(f"Error while accessing {url}:", status, "(after", attempts, "attempts)")
 

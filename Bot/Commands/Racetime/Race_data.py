@@ -7,7 +7,9 @@ def parse_race_data(data):
     entrants = [parse_entrant_data(entrant_data) for entrant_data in data['entrants']]
     return Race(game=data['category']['short_name'],
                 category=data['goal']['name'],
+                status=data['status']['value'],
                 url=data['url'],
+                ended_at=data['ended_at'],
                 info=data['info'],
                 entrants=entrants)
 
@@ -46,6 +48,8 @@ class Race:
     category: str
     info: str
     url: str
+    ended_at: str
+    status: str
     entrants: List[Entrant]
 
     def __str__(self):
@@ -54,3 +58,18 @@ class Race:
     def get_string_entrants(self):
         entrants_strings = [str(e) for e in sorted(self.entrants, key=lambda e: e.rank)]
         return f"{len(self.entrants)} entrants: {' | '.join(entrants_strings)}"
+
+    def active(self):
+        return self.status not in ['cancelled', 'finished']
+
+    def ended_at_time(self):
+        if not self.ended_at:
+            return
+        return dt.datetime.strptime(self.ended_at, "%Y-%m-%dT%H:%M:%S.%fZ")
+
+    def ended_recently(self, hour_limit):
+        ended_at_time = self.ended_at_time()
+        if not ended_at_time:
+            return False
+        now = dt.datetime.utcnow()
+        return now < ended_at_time + dt.timedelta(hours=hour_limit)

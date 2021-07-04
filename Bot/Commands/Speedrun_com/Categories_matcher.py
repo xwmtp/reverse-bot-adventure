@@ -20,7 +20,6 @@ class Categories_matcher:
     def match(self, string):
         for category_names in self.categories_nicknames:
             if "collection" in category_names:
-                print(category_names["name"])
                 match = self.match_on_category_or_subcategory(string, category_names)
             else:
                 match = self.match_on_full_category(string, category_names)
