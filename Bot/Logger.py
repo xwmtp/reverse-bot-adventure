@@ -22,6 +22,7 @@ def initalize_logger():
 
     # file handler (errors)
     add_logging_handler(logging.FileHandler("logs/ERROR.log", "a"), logging.WARNING)
+    add_logging_handler(logging.FileHandler("logs/INFO.log", "a"), logging.INFO)
 
 def update_logging_levels(new_level):
     try:

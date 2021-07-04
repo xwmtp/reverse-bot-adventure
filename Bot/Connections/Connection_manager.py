@@ -3,7 +3,6 @@ from Bot.Connections.Message import convert_irc_message
 from Bot.Connections.IRC_connection import IRC_connection
 from Bot.Responder import Responder
 from Bot.Config import Configs
-from Bot.Logger import update_logging_levels
 import socket
 import logging
 import time
@@ -191,8 +190,6 @@ class Reconnecter:
             self.connection.reset_connection()
 
             logging.warning(f"Changing logging level to DEBUG after reconnect")
-            update_logging_levels(logging.DEBUG)
-
 
             if self.connection.is_connected():
                 try:
